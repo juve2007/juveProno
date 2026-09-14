@@ -1,0 +1,38 @@
+name: Mise à jour quotidienne des pronostics
+
+on:
+  schedule:
+    - cron: "0 6 * * *"   # tous les jours à 06:00 UTC (~07:00 au Bénin)
+  workflow_dispatch:        # bouton "Run workflow" pour lancer manuellement
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Récupérer le code
+        uses: actions/checkout@v4
+
+      - name: Installer Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Installer les dépendances
+        run: pip install numpy scipy pandas requests
+
+      - name: Générer le dashboard avec les vraies données
+        env:
+          FOOTBALL_DATA_TOKEN: ${{ secrets.FOOTBALL_DATA_TOKEN }}
+          ODDS_API_TOKEN: ${{ secrets.ODDS_API_TOKEN }}
+        run: python build_dashboard.py
+
+      - name: Publier la mise à jour
+        run: |
+          git config user.name "juveprono-bot"
+          git config user.email "bot@juveprono.local"
+          git add dashboard.html history.json
+          git diff --staged --quiet || git commit -m "Mise à jour automatique des pronostics"
+          git push

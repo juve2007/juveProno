@@ -1,0 +1,6 @@
+# Ne jamais publier ton token API
+config.json
+
+# Fichiers Python temporaires
+__pycache__/
+*.pyc
