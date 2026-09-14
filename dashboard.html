@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>JuveProno — Pronostics du jour</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0b1220">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="JuveProno">
+<style>
+  :root{
+    --bg:#0b1220;
+    --bg-2:#0e1626;
+    --panel:#111b2e;
+    --panel-2:#16233a;
+    --stub:#0e1a2c;
+    --turf:#1f8a5f;
+    --turf-light:#38c485;
+    --floodlight:#f2b705;
+    --coral:#ff7a5c;
+    --chalk:#f4f7fb;
+    --slate:#93a1b8;
+    --slate-dim:#5c6a82;
+    --line:#213251;
+    --radius:14px;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:
+      radial-gradient(ellipse 900px 500px at 50% -10%, rgba(242,183,5,0.10), transparent 60%),
+      radial-gradient(ellipse 700px 400px at 90% 10%, rgba(56,196,133,0.08), transparent 60%),
+      var(--bg);
+    color:var(--chalk);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    min-height:100vh;
+    padding-bottom:60px;
+  }
+  .wrap{max-width:1080px;margin:0 auto;padding:0 20px;}
+
+  .masthead{
+    position:relative;overflow:hidden;
+    padding:54px 20px 38px;margin-bottom:6px;
+    background:
+      radial-gradient(ellipse 700px 380px at 15% 0%, rgba(56,196,133,0.16), transparent 60%),
+      radial-gradient(ellipse 700px 380px at 100% 20%, rgba(242,183,5,0.14), transparent 60%),
+      var(--bg-2);
+    border-bottom:1px solid var(--line);
+  }
+  .masthead-bg{
+    position:absolute;inset:0;pointer-events:none;overflow:hidden;
+    -webkit-mask-image:linear-gradient(to bottom, black, transparent 85%);
+    mask-image:linear-gradient(to bottom, black, transparent 85%);
+  }
+  .masthead-bg .fc{
+    position:absolute;border-radius:50%;filter:blur(1.5px);opacity:0.5;
+  }
+  .masthead-inner{max-width:1080px;margin:0 auto;position:relative;}
+  .masthead-eyebrow{
+    display:inline-flex;align-items:center;gap:7px;
+    font-size:12px;font-weight:700;color:var(--turf-light);
+    background:rgba(56,196,133,0.1);border:1px solid rgba(56,196,133,0.3);
+    padding:5px 12px;border-radius:20px;margin-bottom:18px;
+  }
+  .masthead h1{
+    font-size:38px;font-weight:800;letter-spacing:-0.03em;line-height:1.08;
+    margin:0 0 12px;max-width:640px;
+  }
+  .masthead h1 span{color:var(--floodlight);}
+  .masthead p{font-size:14.5px;color:var(--slate);max-width:520px;margin:0 0 26px;line-height:1.55;}
+  .masthead-stats{display:flex;gap:34px;flex-wrap:wrap;}
+  .masthead-stats div{display:flex;flex-direction:column;}
+  .masthead-stats b{font-size:24px;font-weight:800;font-variant-numeric:tabular-nums;letter-spacing:-0.01em;}
+  .masthead-stats span{font-size:11.5px;color:var(--slate-dim);margin-top:2px;}
+  @media (max-width:640px){
+    .masthead h1{font-size:28px;}
+    .masthead-stats{gap:22px;}
+  }
+
+  header.top{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:16px 0;border-bottom:1px solid var(--line);
+  }
+  .brand{display:flex;align-items:center;gap:10px;}
+  .ball{
+    width:26px;height:26px;border-radius:50%;flex:none;
+    background:
+      conic-gradient(from 90deg, #111 0 22deg, transparent 22deg 158deg, #111 158deg 180deg, transparent 180deg 338deg, #111 338deg 360deg),
+      var(--chalk);
+    position:relative;
+    animation:roll 6s linear infinite;
+  }
+  @keyframes roll{to{transform:rotate(360deg);}}
+  .brand-name{font-weight:800;font-size:18px;letter-spacing:-0.02em;}
+  .brand-sub{color:var(--slate);font-size:12px;margin-top:1px;}
+  .live{
+    display:flex;align-items:center;gap:8px;font-size:12px;color:var(--slate);
+  }
+  .dot{width:7px;height:7px;border-radius:50%;background:var(--turf-light);animation:pulse 1.6s ease-in-out infinite;}
+  @keyframes pulse{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(56,196,133,0.5);}50%{opacity:0.6;box-shadow:0 0 0 5px rgba(56,196,133,0);}}
+
+  .ticker{
+    border-bottom:1px solid var(--line);
+    background:var(--bg-2);
+    overflow:hidden;white-space:nowrap;
+    padding:9px 0;
+  }
+  .ticker-track{display:inline-block;padding-left:100%;animation:scroll-left 32s linear infinite;}
+  .ticker-track span{margin-right:40px;font-size:12.5px;color:var(--slate);}
+  .ticker-track b{color:var(--chalk);font-weight:700;}
+  @keyframes scroll-left{to{transform:translateX(-100%);}}
+
+  .hero{
+    padding:44px 0 30px;text-align:center;
+    border-bottom:1px solid var(--line);
+  }
+  .hero-eyebrow{font-size:13px;color:var(--floodlight);font-weight:700;margin-bottom:6px;}
+  .hero-comp{color:var(--slate);font-size:13px;margin-bottom:26px;}
+  .duel{display:flex;align-items:center;justify-content:center;gap:56px;margin-bottom:22px;}
+  .crest-wrap{
+    border-radius:50%;
+    background:radial-gradient(circle at 50% 40%, rgba(255,255,255,0.10), rgba(255,255,255,0.03));
+    display:flex;align-items:center;justify-content:center;
+    overflow:hidden;box-sizing:border-box;flex:none;
+  }
+  .crest-wrap img{width:100%;height:100%;object-fit:contain;display:block;}
+
+  .duel-team{display:flex;flex-direction:column;align-items:center;gap:14px;width:210px;}
+  .duel-team .crest-enter{animation:crest-in .7s cubic-bezier(.2,.8,.3,1.2) both;}
+  .duel-team .crest-float{animation:crest-float 3.2s ease-in-out infinite;}
+  .duel-team:nth-child(3) .crest-float{animation-delay:.4s;}
+  .duel-team .crest-wrap{padding:14px;}
+  .duel-team .name{font-weight:700;font-size:15px;line-height:1.25;}
+  .duel-team .xg{color:var(--slate);font-size:12px;}
+  @keyframes crest-in{from{opacity:0;transform:scale(.5);}to{opacity:1;transform:scale(1);}}
+  @keyframes crest-float{0%,100%{transform:translateY(0);}50%{transform:translateY(-8px);}}
+  .vs{font-size:13px;color:var(--slate-dim);font-weight:700;}
+  .hero-pick{font-size:12.5px;color:var(--slate);margin-bottom:2px;}
+  .hero-number{
+    font-size:64px;font-weight:800;letter-spacing:-0.03em;line-height:1;
+    font-variant-numeric:tabular-nums;color:var(--turf-light);
+  }
+  .hero-label{font-size:14px;color:var(--chalk);margin-top:4px;font-weight:600;}
+  .hero-bar{
+    max-width:420px;height:8px;margin:22px auto 0;border-radius:6px;overflow:hidden;
+    display:flex;background:var(--panel-2);
+  }
+  .hero-bar div{height:100%;width:0;}
+
+  section.grid-title{
+    display:flex;align-items:baseline;justify-content:space-between;
+    padding:30px 0 14px;
+  }
+  section.grid-title h2{font-size:17px;font-weight:800;margin:0;letter-spacing:-0.01em;}
+  section.grid-title span{font-size:12.5px;color:var(--slate);}
+
+  .picks-section{padding:38px 0 6px;border-top:1px solid var(--line);}
+  .picks-head{margin-bottom:4px;}
+  .picks-head h2{font-size:17px;font-weight:800;margin:0 0 4px;letter-spacing:-0.01em;}
+  .picks-head p{font-size:12.5px;color:var(--slate);margin:0 0 20px;max-width:560px;line-height:1.5;}
+
+  .pick-row{
+    display:flex;align-items:center;gap:14px;padding:12px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .pick-rank{
+    width:26px;height:26px;border-radius:50%;flex:none;
+    background:var(--panel-2);color:var(--floodlight);font-weight:800;font-size:12.5px;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .pick-teams{display:flex;align-items:center;gap:6px;flex:none;}
+  .pick-teams .crest-wrap{padding:3px;}
+  .pick-info{flex:1;min-width:0;}
+  .pick-match{font-size:12px;color:var(--slate);margin-bottom:2px;}
+  .pick-outcome{font-size:14px;font-weight:700;}
+  .pick-prob{width:150px;flex:none;text-align:right;}
+  .pick-prob b{font-size:18px;font-variant-numeric:tabular-nums;}
+  .pick-cote{font-size:10.5px;color:var(--slate-dim);margin-top:2px;}
+  .pick-prob-bar{height:5px;border-radius:3px;background:var(--panel-2);margin-top:6px;overflow:hidden;}
+  .pick-prob-bar div{height:100%;width:0;background:var(--turf-light);transition:width 1s cubic-bezier(.2,.7,.3,1);}
+
+  .combo-panel{
+    margin-top:22px;padding:22px 24px;border-radius:var(--radius);
+    background:linear-gradient(160deg, rgba(242,183,5,0.09), rgba(242,183,5,0.02));
+    border:1px solid rgba(242,183,5,0.35);
+    display:flex;align-items:center;gap:26px;flex-wrap:wrap;
+  }
+  .combo-number{font-size:46px;font-weight:800;color:var(--floodlight);letter-spacing:-0.02em;font-variant-numeric:tabular-nums;flex:none;}
+  .combo-text{flex:1;min-width:240px;}
+  .combo-text .t1{font-weight:700;font-size:14px;margin-bottom:4px;}
+  .combo-text .t2{font-size:12.5px;color:var(--slate);line-height:1.5;}
+
+  @media (max-width:640px){
+    .pick-teams{display:none;}
+    .pick-prob{width:90px;}
+    .combo-panel{flex-direction:column;align-items:flex-start;gap:10px;}
+  }
+
+  .reliability-section{padding:36px 0 6px;border-top:1px solid var(--line);}
+  .reliability-head h2{font-size:17px;font-weight:800;margin:0 0 4px;letter-spacing:-0.01em;}
+  .reliability-head p{font-size:12.5px;color:var(--slate);margin:0 0 20px;max-width:560px;line-height:1.5;}
+  .reliability-stats{display:flex;gap:40px;flex-wrap:wrap;margin-bottom:22px;}
+  .reliability-stats div{display:flex;flex-direction:column;}
+  .reliability-stats b{font-size:32px;font-weight:800;font-variant-numeric:tabular-nums;letter-spacing:-0.02em;color:var(--turf-light);}
+  .reliability-stats span{font-size:11.5px;color:var(--slate-dim);margin-top:3px;}
+  .reliability-strip{display:flex;gap:6px;flex-wrap:wrap;}
+  .chip-result{
+    width:34px;height:34px;border-radius:9px;flex:none;
+    display:flex;align-items:center;justify-content:center;
+    font-size:15px;font-weight:800;
+  }
+  .chip-result.win{background:rgba(56,196,133,0.16);color:var(--turf-light);}
+  .chip-result.loss{background:rgba(255,122,92,0.14);color:var(--coral);}
+  .reliability-empty{font-size:13px;color:var(--slate);padding:6px 0 10px;}
+
+  .value-section{padding:36px 0 6px;border-top:1px solid var(--line);}
+  .value-head h2{font-size:17px;font-weight:800;margin:0 0 4px;letter-spacing:-0.01em;}
+  .value-head p{font-size:12.5px;color:var(--slate);margin:0 0 20px;max-width:600px;line-height:1.5;}
+  .value-row{
+    display:flex;align-items:center;gap:14px;padding:13px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .value-teams{display:flex;align-items:center;gap:6px;flex:none;}
+  .value-teams .crest-wrap{padding:3px;}
+  .value-info{flex:1;min-width:0;}
+  .value-match{font-size:12px;color:var(--slate);margin-bottom:2px;}
+  .value-outcome{font-size:14px;font-weight:700;}
+  .value-compare{display:flex;gap:18px;flex:none;text-align:right;}
+  .value-compare div{display:flex;flex-direction:column;}
+  .value-compare b{font-size:15px;font-variant-numeric:tabular-nums;}
+  .value-compare span{font-size:10px;color:var(--slate-dim);margin-top:2px;}
+  .value-edge{
+    flex:none;min-width:64px;text-align:center;padding:6px 10px;border-radius:10px;
+    background:rgba(242,183,5,0.12);border:1px solid rgba(242,183,5,0.35);
+    font-weight:800;color:var(--floodlight);font-size:14px;font-variant-numeric:tabular-nums;
+  }
+  .value-empty{font-size:13px;color:var(--slate);padding:6px 0 10px;}
+  @media (max-width:640px){
+    .value-teams{display:none;}
+    .value-compare{gap:10px;}
+  }
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(430px,1fr));gap:16px;}
+
+  .ticket{
+    display:flex;background:var(--panel);border:1px solid var(--line);
+    border-radius:var(--radius);overflow:hidden;transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+  }
+  .ticket:hover{transform:translateY(-3px);border-color:#2a3d63;box-shadow:0 14px 30px -14px rgba(0,0,0,0.55);}
+
+  .ticket-main{flex:1;padding:16px 18px;min-width:0;}
+  .ticket-comp{font-size:11.5px;color:var(--slate);margin-bottom:10px;}
+  .ticket-comp b{color:var(--slate);}
+  .row{display:flex;align-items:center;gap:10px;padding:5px 0;}
+  .row .crest-wrap{padding:4px;}
+  .row .name{font-size:13.5px;font-weight:600;flex:1;}
+  .row .xg{font-size:12px;color:var(--slate-dim);font-variant-numeric:tabular-nums;}
+  .bars{display:flex;height:6px;border-radius:4px;overflow:hidden;background:var(--panel-2);margin-top:10px;}
+  .bars div{height:100%;width:0;transition:width 1s cubic-bezier(.2,.7,.3,1);}
+  .bars-legend{display:flex;justify-content:space-between;font-size:10.5px;color:var(--slate-dim);margin-top:5px;}
+
+  .stub{
+    width:150px;flex:none;background:var(--stub);
+    border-left:2px dashed var(--line);
+    padding:16px 14px;display:flex;flex-direction:column;align-items:center;justify-content:center;
+    text-align:center;position:relative;
+  }
+  .stub-pct{font-size:30px;font-weight:800;letter-spacing:-0.02em;font-variant-numeric:tabular-nums;}
+  .stub-outcome{font-size:11px;color:var(--slate);margin-top:2px;margin-bottom:12px;}
+  .chip{
+    font-size:10.5px;background:var(--panel-2);color:var(--slate);
+    padding:4px 8px;border-radius:20px;margin-top:5px;width:100%;
+  }
+  .chip b{color:var(--chalk);}
+  .score-pick{font-size:11px;color:var(--slate-dim);margin-top:10px;}
+  .score-pick b{color:var(--floodlight);font-size:13px;}
+
+  footer{
+    max-width:1080px;margin:40px auto 0;padding:18px 20px 0;
+    border-top:1px solid var(--line);color:var(--slate-dim);font-size:12px;text-align:center;
+  }
+
+  @media (max-width:640px){
+    .grid{grid-template-columns:1fr;}
+    .ticket{flex-direction:column;}
+    .stub{width:100%;border-left:none;border-top:2px dashed var(--line);flex-direction:row;justify-content:space-between;text-align:left;padding:12px 16px;}
+    .stub-pct{font-size:24px;}
+    .duel{gap:16px;}
+    .duel-team{width:110px;}
+    .hero-number{font-size:48px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="masthead">
+  <div class="masthead-bg" id="masthead-bg"></div>
+  <div class="masthead-inner">
+    <div class="masthead-eyebrow">⚽ Analyse statistique en temps réel</div>
+    <h1>Des pronostics <span>calculés</span>,<br>pas devinés.</h1>
+    <p>Chaque probabilité vient d'un modèle Dixon-Coles entraîné sur les vrais résultats de la saison — pas d'intuition, pas de martingale, juste des chiffres à jour chaque jour.</p>
+    <div class="masthead-stats" id="masthead-stats"></div>
+  </div>
+</div>
+
+<div class="wrap">
+  <header class="top">
+    <div class="brand">
+      <div class="ball"></div>
+      <div>
+        <div class="brand-name">JuveProno</div>
+        <div class="brand-sub" id="date-line"></div>
+      </div>
+    </div>
+    <div class="live"><span class="dot"></span> mis à jour aujourd'hui</div>
+  </header>
+
+  <div class="ticker">
+    <div class="ticker-track" id="ticker"></div>
+  </div>
+
+  <section class="hero" id="hero"></section>
+
+  <section class="picks-section" id="picks-section"></section>
+
+  <section class="reliability-section" id="reliability-section"></section>
+
+  <section class="value-section" id="value-section"></section>
+
+  <section class="grid-title">
+    <h2>Tous les matchs du jour</h2>
+    <span id="grid-count"></span>
+  </section>
+  <div class="grid" id="grid"></div>
+
+  <footer>
+    Les pourcentages affichés sont des probabilités statistiques issues d'un modèle de Poisson entraîné sur les résultats réels de la saison — ce ne sont pas des garanties de résultat.
+  </footer>
+</div>
+
+<script>
+const DATA = {"generated_at": "2026-09-14", "matches": [{"match_id": 567308, "competition": "Primeira Liga", "competition_code": "PPL", "date": "2026-09-14", "home": "Sporting Clube de Braga", "away": "GD Estoril Praia", "home_crest": "https://crests.football-data.org/5613.png", "away_crest": "https://crests.football-data.org/582.png", "xg_home": 1.15, "xg_away": 0.35, "p_home": 56.9, "p_draw": 31.4, "p_away": 11.7, "over25": 19.3, "btts": 20.1, "top_score": "1-0", "top_score_prob": 25.9}, {"match_id": 555001, "competition": "Brasileirão", "competition_code": "BSA", "date": "2026-09-14", "home": "EC Bahia", "away": "Clube do Remo", "home_crest": "https://crests.football-data.org/1777.png", "away_crest": "https://crests.football-data.org/4287.png", "xg_home": 2.19, "xg_away": 1.01, "p_home": 63.1, "p_draw": 21.9, "p_away": 15.0, "over25": 62.0, "btts": 57.6, "top_score": "1-1", "top_score_prob": 10.2}, {"match_id": 564678, "competition": "La Liga", "competition_code": "PD", "date": "2026-09-15", "home": "Rayo Vallecano de Madrid", "away": "RCD Espanyol de Barcelona", "home_crest": "https://crests.football-data.org/87.png", "away_crest": "https://crests.football-data.org/80.png", "xg_home": 1.36, "xg_away": 1.32, "p_home": 34.2, "p_draw": 33.3, "p_away": 32.4, "over25": 50.1, "btts": 58.1, "top_score": "1-1", "top_score_prob": 16.0}, {"match_id": 564680, "competition": "La Liga", "competition_code": "PD", "date": "2026-09-15", "home": "Deportivo Alavés", "away": "Valencia CF", "home_crest": "https://crests.football-data.org/263.png", "away_crest": "https://crests.football-data.org/95.png", "xg_home": 2.61, "xg_away": 0.12, "p_home": 89.5, "p_draw": 10.1, "p_away": 0.4, "over25": 51.3, "btts": 11.4, "top_score": "2-0", "top_score_prob": 22.2}, {"match_id": 564681, "competition": "La Liga", "competition_code": "PD", "date": "2026-09-15", "home": "Elche CF", "away": "Real Madrid CF", "home_crest": "https://crests.football-data.org/285.png", "away_crest": "https://crests.football-data.org/86.png", "xg_home": 0.97, "xg_away": 3.03, "p_home": 7.3, "p_draw": 16.0, "p_away": 76.7, "over25": 76.2, "btts": 60.9, "top_score": "0-3", "top_score_prob": 8.5}, {"match_id": 558240, "competition": "Eredivisie", "competition_code": "DED", "date": "2026-09-15", "home": "AFC Ajax", "away": "Willem II Tilburg", "home_crest": "https://crests.football-data.org/678.png", "away_crest": "https://crests.football-data.org/672.png", "xg_home": 3.56, "xg_away": 0.82, "p_home": 86.6, "p_draw": 8.4, "p_away": 5.0, "over25": 81.0, "btts": 54.2, "top_score": "3-0", "top_score_prob": 9.5}, {"match_id": 561825, "competition": "Championship", "competition_code": "ELC", "date": "2026-09-15", "home": "Middlesbrough FC", "away": "Millwall FC", "home_crest": "https://crests.football-data.org/343.png", "away_crest": "https://crests.football-data.org/384.png", "xg_home": 2.85, "xg_away": 1.33, "p_home": 67.0, "p_draw": 19.3, "p_away": 13.7, "over25": 78.8, "btts": 71.2, "top_score": "2-1", "top_score_prob": 8.3}, {"match_id": 561828, "competition": "Championship", "competition_code": "ELC", "date": "2026-09-15", "home": "Bristol City FC", "away": "Lincoln City FC", "home_crest": "https://crests.football-data.org/387.png", "away_crest": "https://crests.football-data.org/1126.png", "xg_home": 1.03, "xg_away": 0.68, "p_home": 39.1, "p_draw": 40.8, "p_away": 20.1, "over25": 24.5, "btts": 35.5, "top_score": "0-0", "top_score_prob": 21.9}, {"match_id": 564679, "competition": "La Liga", "competition_code": "PD", "date": "2026-09-16", "home": "RC Deportivo La Coruña", "away": "Sevilla FC", "home_crest": "https://crests.football-data.org/560.png", "away_crest": "https://crests.football-data.org/559.png", "xg_home": 1.88, "xg_away": 2.4, "p_home": 28.8, "p_draw": 23.2, "p_away": 48.0, "over25": 80.0, "btts": 79.0, "top_score": "1-1", "top_score_prob": 8.1}, {"match_id": 564684, "competition": "La Liga", "competition_code": "PD", "date": "2026-09-16", "home": "Club Atlético de Madrid", "away": "CA Osasuna", "home_crest": "https://crests.football-data.org/78.png", "away_crest": "https://crests.football-data.org/79.png", "xg_home": 3.79, "xg_away": 0.95, "p_home": 85.5, "p_draw": 10.3, "p_away": 4.1, "over25": 84.9, "btts": 60.7, "top_score": "3-0", "top_score_prob": 8.1}, {"match_id": 564685, "competition": "La Liga", "competition_code": "PD", "date": "2026-09-16", "home": "Levante UD", "away": "Athletic Club", "home_crest": "https://crests.football-data.org/88.png", "away_crest": "https://crests.football-data.org/77.png", "xg_home": 1.4, "xg_away": 1.33, "p_home": 35.3, "p_draw": 32.9, "p_away": 31.8, "over25": 51.3, "btts": 59.0, "top_score": "1-1", "top_score_prob": 15.8}, {"match_id": 554941, "competition": "Brasileirão", "competition_code": "BSA", "date": "2026-09-16", "home": "Botafogo FR", "away": "Grêmio FBPA", "home_crest": "https://crests.football-data.org/1770.png", "away_crest": "https://crests.football-data.org/1767.png", "xg_home": 1.66, "xg_away": 0.97, "p_home": 51.9, "p_draw": 27.6, "p_away": 20.5, "over25": 48.8, "btts": 51.8, "top_score": "1-1", "top_score_prob": 13.2}, {"match_id": 559682, "competition": "Ligue 1", "competition_code": "FL1", "date": "2026-09-18", "home": "AS Monaco FC", "away": "Racing Club de Lens", "home_crest": "https://crests.football-data.org/548.png", "away_crest": "https://crests.football-data.org/546.png", "xg_home": 1.37, "xg_away": 0.18, "p_home": 67.7, "p_draw": 28.2, "p_away": 4.1, "over25": 20.3, "btts": 13.0, "top_score": "1-0", "top_score_prob": 28.4}, {"match_id": 560591, "competition": "Premier League", "competition_code": "PL", "date": "2026-09-18", "home": "Brentford FC", "away": "Chelsea FC", "home_crest": "https://crests.football-data.org/402.png", "away_crest": "https://crests.football-data.org/61.png", "xg_home": 3.31, "xg_away": 5.56, "p_home": 19.0, "p_draw": 11.9, "p_away": 69.2, "over25": 99.2, "btts": 96.0, "top_score": "3-5", "top_score_prob": 4.3}, {"match_id": 565804, "competition": "Bundesliga", "competition_code": "BL1", "date": "2026-09-18", "home": "FC Bayern München", "away": "1. FC Union Berlin", "home_crest": "https://crests.football-data.org/5.png", "away_crest": "https://crests.football-data.org/28.png", "xg_home": 6.42, "xg_away": 0.42, "p_home": 98.9, "p_draw": 1.0, "p_away": 0.1, "over25": 95.8, "btts": 34.4, "top_score": "6-0", "top_score_prob": 13.0}, {"match_id": 558596, "competition": "Serie A", "competition_code": "SA", "date": "2026-09-18", "home": "AC Monza", "away": "US Sassuolo Calcio", "home_crest": "https://crests.football-data.org/5911.png", "away_crest": "https://crests.football-data.org/471.png", "xg_home": 2.04, "xg_away": 6.67, "p_home": 4.4, "p_draw": 5.1, "p_away": 90.4, "over25": 99.0, "btts": 86.9, "top_score": "2-6", "top_score_prob": 5.4}, {"match_id": 558888, "competition": "Eredivisie", "competition_code": "DED", "date": "2026-09-18", "home": "FC Groningen", "away": "PEC Zwolle", "home_crest": "https://crests.football-data.org/677.png", "away_crest": "https://crests.football-data.org/684.png", "xg_home": 2.56, "xg_away": 1.25, "p_home": 66.0, "p_draw": 16.9, "p_away": 17.2, "over25": 73.2, "btts": 65.5, "top_score": "2-1", "top_score_prob": 9.1}, {"match_id": 561845, "competition": "Championship", "competition_code": "ELC", "date": "2026-09-18", "home": "Bristol City FC", "away": "Watford FC", "home_crest": "https://crests.football-data.org/387.png", "away_crest": "https://crests.football-data.org/346.png", "xg_home": 1.34, "xg_away": 0.89, "p_home": 43.1, "p_draw": 35.7, "p_away": 21.2, "over25": 38.5, "btts": 47.4, "top_score": "1-1", "top_score_prob": 16.7}, {"match_id": 559679, "competition": "Ligue 1", "competition_code": "FL1", "date": "2026-09-19", "home": "Paris FC", "away": "RC Strasbourg Alsace", "home_crest": "https://crests.football-data.org/1045.png", "away_crest": "https://crests.football-data.org/576.png", "xg_home": 2.81, "xg_away": 1.35, "p_home": 67.2, "p_draw": 17.6, "p_away": 15.3, "over25": 78.4, "btts": 70.2, "top_score": "2-1", "top_score_prob": 8.3}, {"match_id": 559677, "competition": "Ligue 1", "competition_code": "FL1", "date": "2026-09-19", "home": "Le Mans FC", "away": "FC Lorient", "home_crest": "https://upload.wikimedia.org/wikipedia/en/5/57/Le_Mans_FC_logo.svg", "away_crest": "https://crests.football-data.org/525.png", "xg_home": 2.36, "xg_away": 1.84, "p_home": 49.2, "p_draw": 21.2, "p_away": 29.6, "over25": 79.0, "btts": 77.0, "top_score": "2-1", "top_score_prob": 7.7}, {"match_id": 559680, "competition": "Ligue 1", "competition_code": "FL1", "date": "2026-09-19", "home": "Toulouse FC", "away": "Le Havre AC", "home_crest": "https://crests.football-data.org/511.png", "away_crest": "https://crests.football-data.org/533.png", "xg_home": 2.02, "xg_away": 1.51, "p_home": 48.5, "p_draw": 23.7, "p_away": 27.8, "over25": 68.3, "btts": 68.5, "top_score": "1-1", "top_score_prob": 10.0}, {"match_id": 559681, "competition": "Ligue 1", "competition_code": "FL1", "date": "2026-09-19", "home": "Angers SCO", "away": "ES Troyes AC", "home_crest": "https://crests.football-data.org/532.png", "away_crest": "https://crests.football-data.org/531.png", "xg_home": 0.97, "xg_away": 1.21, "p_home": 27.8, "p_draw": 32.2, "p_away": 40.0, "over25": 37.1, "btts": 45.1, "top_score": "1-1", "top_score_prob": 14.9}, {"match_id": 559683, "competition": "Ligue 1", "competition_code": "FL1", "date": "2026-09-19", "home": "Olympique Lyonnais", "away": "Stade Rennais FC 1901", "home_crest": "https://crests.football-data.org/523.png", "away_crest": "https://crests.football-data.org/529.png", "xg_home": 0.48, "xg_away": 0.48, "p_home": 25.0, "p_draw": 49.9, "p_away": 25.2, "over25": 7.2, "btts": 15.5, "top_score": "0-0", "top_score_prob": 39.5}, {"match_id": 560587, "competition": "Premier League", "competition_code": "PL", "date": "2026-09-19", "home": "Tottenham Hotspur FC", "away": "Aston Villa FC", "home_crest": "https://crests.football-data.org/73.png", "away_crest": "https://crests.football-data.org/58.png", "xg_home": 0.06, "xg_away": 0.18, "p_home": 4.3, "p_draw": 80.2, "p_away": 15.5, "over25": 0.2, "btts": 1.1, "top_score": "0-0", "top_score_prob": 79.2}, {"match_id": 560584, "competition": "Premier League", "competition_code": "PL", "date": "2026-09-19", "home": "Everton FC", "away": "Ipswich Town FC", "home_crest": "https://crests.football-data.org/62.png", "away_crest": "https://crests.football-data.org/349.png", "xg_home": 1.65, "xg_away": 0.75, "p_home": 55.5, "p_draw": 31.1, "p_away": 13.5, "over25": 43.0, "btts": 46.0, "top_score": "1-1", "top_score_prob": 14.6}, {"match_id": 560586, "competition": "Premier League", "competition_code": "PL", "date": "2026-09-19", "home": "Brighton & Hove Albion FC", "away": "Arsenal FC", "home_crest": "https://crests.football-data.org/397.png", "away_crest": "https://crests.football-data.org/57.png", "xg_home": 0.87, "xg_away": 2.17, "p_home": 11.2, "p_draw": 24.5, "p_away": 64.4, "over25": 58.7, "btts": 54.3, "top_score": "1-1", "top_score_prob": 11.7}, {"match_id": 560588, "competition": "Premier League", "competition_code": "PL", "date": "2026-09-19", "home": "Newcastle United FC", "away": "Hull City AFC", "home_crest": "https://crests.football-data.org/67.png", "away_crest": "https://crests.football-data.org/322.png", "xg_home": 0.86, "xg_away": 1.48, "p_home": 18.1, "p_draw": 33.8, "p_away": 48.1, "over25": 41.3, "btts": 48.1, "top_score": "1-1", "top_score_prob": 15.9}, {"match_id": 560589, "competition": "Premier League", "competition_code": "PL", "date": "2026-09-19", "home": "Nottingham Forest FC", "away": "Coventry City FC", "home_crest": "https://crests.football-data.org/351.png", "away_crest": "https://crests.football-data.org/1076.png", "xg_home": 2.14, "xg_away": 0.17, "p_home": 82.6, "p_draw": 16.2, "p_away": 1.1, "over25": 40.7, "btts": 15.2, "top_score": "2-0", "top_score_prob": 22.6}, {"match_id": 565808, "competition": "Bundesliga", "competition_code": "BL1", "date": "2026-09-19", "home": "Hamburger SV", "away": "1. FC Köln", "home_crest": "https://crests.football-data.org/7.png", "away_crest": "https://crests.football-data.org/1.png", "xg_home": 0.12, "xg_away": 1.61, "p_home": 1.4, "p_draw": 23.4, "p_away": 75.2, "over25": 25.0, "btts": 10.0, "top_score": "0-1", "top_score_prob": 27.6}, {"match_id": 565809, "competition": "Bundesliga", "competition_code": "BL1", "date": "2026-09-19", "home": "Borussia Mönchengladbach", "away": "1. FSV Mainz 05", "home_crest": "https://crests.football-data.org/18.png", "away_crest": "https://crests.football-data.org/15.png", "xg_home": 2.7, "xg_away": 1.6, "p_home": 59.2, "p_draw": 21.1, "p_away": 19.7, "over25": 80.2, "btts": 76.2, "top_score": "2-1", "top_score_prob": 7.9}, {"match_id": 565810, "competition": "Bundesliga", "competition_code": "BL1", "date": "2026-09-19", "home": "SV Werder Bremen", "away": "FC Augsburg", "home_crest": "https://crests.football-data.org/12.png", "away_crest": "https://crests.football-data.org/16.png", "xg_home": 1.86, "xg_away": 3.93, "p_home": 13.2, "p_draw": 13.6, "p_away": 73.1, "over25": 92.6, "btts": 83.4, "top_score": "1-3", "top_score_prob": 5.9}, {"match_id": 565811, "competition": "Bundesliga", "competition_code": "BL1", "date": "2026-09-19", "home": "Eintracht Frankfurt", "away": "SC Freiburg", "home_crest": "https://crests.football-data.org/19.png", "away_crest": "https://crests.football-data.org/17.png", "xg_home": 0.89, "xg_away": 2.02, "p_home": 12.8, "p_draw": 26.5, "p_away": 60.8, "over25": 55.7, "btts": 54.0, "top_score": "1-1", "top_score_prob": 12.7}, {"match_id": 565806, "competition": "Bundesliga", "competition_code": "BL1", "date": "2026-09-19", "home": "VfB Stuttgart", "away": "Borussia Dortmund", "home_crest": "https://crests.football-data.org/10.png", "away_crest": "https://crests.football-data.org/4.png", "xg_home": 2.69, "xg_away": 2.45, "p_home": 43.8, "p_draw": 20.4, "p_away": 35.8, "over25": 88.6, "btts": 86.3, "top_score": "2-2", "top_score_prob": 6.4}, {"match_id": 558598, "competition": "Serie A", "competition_code": "SA", "date": "2026-09-19", "home": "Bologna FC 1909", "away": "Torino FC", "home_crest": "https://crests.football-data.org/103.png", "away_crest": "https://crests.football-data.org/586.png", "xg_home": 0.44, "xg_away": 0.52, "p_home": 23.3, "p_draw": 48.1, "p_away": 28.6, "over25": 7.4, "btts": 14.8, "top_score": "0-0", "top_score_prob": 38.5}, {"match_id": 558589, "competition": "Serie A", "competition_code": "SA", "date": "2026-09-19", "home": "Udinese Calcio", "away": "Cagliari Calcio", "home_crest": "https://crests.football-data.org/115.png", "away_crest": "https://crests.football-data.org/104.png", "xg_home": 0.43, "xg_away": 0.91, "p_home": 16.4, "p_draw": 38.2, "p_away": 45.4, "over25": 15.2, "btts": 21.2, "top_score": "0-0", "top_score_prob": 26.6}, {"match_id": 558593, "competition": "Serie A", "competition_code": "SA", "date": "2026-09-19", "home": "AS Roma", "away": "FC Internazionale Milano", "home_crest": "https://crests.football-data.org/100.png", "away_crest": "https://crests.football-data.org/108.png", "xg_home": 1.78, "xg_away": 0.57, "p_home": 66.6, "p_draw": 22.5, "p_away": 10.9, "over25": 41.7, "btts": 36.3, "top_score": "1-0", "top_score_prob": 16.7}, {"match_id": 558594, "competition": "Serie A", "competition_code": "SA", "date": "2026-09-19", "home": "Venezia FC", "away": "SS Lazio", "home_crest": "https://crests.football-data.org/454.png", "away_crest": "https://crests.football-data.org/110.png", "xg_home": 0.55, "xg_away": 5.17, "p_home": 0.8, "p_draw": 2.4, "p_away": 96.8, "over25": 91.8, "btts": 42.1, "top_score": "0-5", "top_score_prob": 11.0}, {"match_id": 558889, "competition": "Eredivisie", "competition_code": "DED", "date": "2026-09-19", "home": "ADO Den Haag", "away": "SC Cambuur-Leeuwarden", "home_crest": "https://crests.football-data.org/680.png", "away_crest": "https://crests.football-data.org/1909.png", "xg_home": 1.68, "xg_away": 2.65, "p_home": 23.8, "p_draw": 17.5, "p_away": 58.6, "over25": 80.7, "btts": 75.4, "top_score": "1-2", "top_score_prob": 7.8}, {"match_id": 558890, "competition": "Eredivisie", "competition_code": "DED", "date": "2026-09-19", "home": "Sparta Rotterdam", "away": "SC Heerenveen", "home_crest": "https://crests.football-data.org/6806.png", "away_crest": "https://crests.football-data.org/673.png", "xg_home": 1.44, "xg_away": 1.49, "p_home": 36.9, "p_draw": 23.6, "p_away": 39.4, "over25": 56.0, "btts": 58.6, "top_score": "1-1", "top_score_prob": 11.0}, {"match_id": 558887, "competition": "Eredivisie", "competition_code": "DED", "date": "2026-09-19", "home": "AFC Ajax", "away": "SBV Excelsior", "home_crest": "https://crests.football-data.org/678.png", "away_crest": "https://crests.football-data.org/670.png", "xg_home": 1.3, "xg_away": 1.22, "p_home": 39.1, "p_draw": 25.8, "p_away": 35.2, "over25": 46.0, "btts": 50.6, "top_score": "1-1", "top_score_prob": 12.2}, {"match_id": 558886, "competition": "Eredivisie", "competition_code": "DED", "date": "2026-09-19", "home": "Willem II Tilburg", "away": "Fortuna Sittard", "home_crest": "https://crests.football-data.org/672.png", "away_crest": "https://crests.football-data.org/1920.png", "xg_home": 1.0, "xg_away": 3.56, "p_home": 6.7, "p_draw": 9.5, "p_away": 83.8, "over25": 83.1, "btts": 61.3, "top_score": "1-3", "top_score_prob": 8.0}, {"match_id": 567311, "competition": "Primeira Liga", "competition_code": "PPL", "date": "2026-09-19", "home": "CD Nacional", "away": "FC Famalicão", "home_crest": "https://crests.football-data.org/5529.png", "away_crest": "https://crests.football-data.org/5531.png", "xg_home": 1.14, "xg_away": 1.29, "p_home": 33.3, "p_draw": 26.3, "p_away": 40.4, "over25": 43.8, "btts": 48.8, "top_score": "1-1", "top_score_prob": 12.4}, {"match_id": 567312, "competition": "Primeira Liga", "competition_code": "PPL", "date": "2026-09-19", "home": "Gil Vicente FC", "away": "CS Marítimo", "home_crest": "https://crests.football-data.org/5533.png", "away_crest": "https://crests.football-data.org/5575.png", "xg_home": 0.63, "xg_away": 0.5, "p_home": 32.8, "p_draw": 42.6, "p_away": 24.6, "over25": 10.5, "btts": 17.9, "top_score": "0-0", "top_score_prob": 32.0}, {"match_id": 567318, "competition": "Primeira Liga", "competition_code": "PPL", "date": "2026-09-19", "home": "FC Alverca", "away": "Rio Ave FC", "home_crest": "https://crests.football-data.org/7822.png", "away_crest": "https://crests.football-data.org/496.png", "xg_home": 2.49, "xg_away": 0.95, "p_home": 71.3, "p_draw": 16.0, "p_away": 12.7, "over25": 66.7, "btts": 55.8, "top_score": "2-0", "top_score_prob": 10.0}, {"match_id": 567313, "competition": "Primeira Liga", "competition_code": "PPL", "date": "2026-09-19", "home": "Sporting Clube de Portugal", "away": "FC Arouca", "home_crest": "https://crests.football-data.org/498.png", "away_crest": "https://crests.football-data.org/712.png", "xg_home": 1.8, "xg_away": 1.27, "p_home": 50.2, "p_draw": 22.3, "p_away": 27.6, "over25": 59.1, "btts": 59.6, "top_score": "1-1", "top_score_prob": 10.2}, {"match_id": 561847, "competition": "Championship", "competition_code": "ELC", "date": "2026-09-19", "home": "Stoke City FC", "away": "Sheffield United FC", "home_crest": "https://crests.football-data.org/70.png", "away_crest": "https://crests.football-data.org/356.png", "xg_home": 1.95, "xg_away": 0.77, "p_home": 62.2, "p_draw": 26.8, "p_away": 11.0, "over25": 51.1, "btts": 49.0, "top_score": "1-1", "top_score_prob": 12.9}, {"match_id": 561849, "competition": "Championship", "competition_code": "ELC", "date": "2026-09-19", "home": "Millwall FC", "away": "West Ham United FC", "home_crest": "https://crests.football-data.org/384.png", "away_crest": "https://crests.football-data.org/563.png", "xg_home": 2.16, "xg_away": 2.5, "p_home": 33.0, "p_draw": 22.0, "p_away": 45.0, "over25": 84.3, "btts": 82.7, "top_score": "2-2", "top_score_prob": 6.9}, {"match_id": 561852, "competition": "Championship", "competition_code": "ELC", "date": "2026-09-19", "home": "Cardiff City FC", "away": "Charlton Athletic FC", "home_crest": "https://crests.football-data.org/715.png", "away_crest": "https://crests.football-data.org/348.png", "xg_home": 0.73, "xg_away": 0.91, "p_home": 23.7, "p_draw": 42.2, "p_away": 34.1, "over25": 22.8, "btts": 34.9, "top_score": "0-0", "top_score_prob": 23.2}, {"match_id": 555011, "competition": "Brasileirão", "competition_code": "BSA", "date": "2026-09-19", "home": "CA Mineiro", "away": "Chapecoense AF", "home_crest": "https://crests.football-data.org/1766.png", "away_crest": "https://crests.football-data.org/1772_large.png", "xg_home": 2.38, "xg_away": 0.86, "p_home": 70.1, "p_draw": 19.3, "p_away": 10.6, "over25": 62.8, "btts": 53.3, "top_score": "2-0", "top_score_prob": 11.1}, {"match_id": 555015, "competition": "Brasileirão", "competition_code": "BSA", "date": "2026-09-19", "home": "Mirassol FC", "away": "Botafogo FR", "home_crest": "https://crests.football-data.org/4364.png", "away_crest": "https://crests.football-data.org/1770.png", "xg_home": 1.41, "xg_away": 1.38, "p_home": 36.4, "p_draw": 28.5, "p_away": 35.0, "over25": 53.0, "btts": 58.3, "top_score": "1-1", "top_score_prob": 13.6}, {"match_id": 555016, "competition": "Brasileirão", "competition_code": "BSA", "date": "2026-09-19", "home": "Clube do Remo", "away": "Santos FC", "home_crest": "https://crests.football-data.org/4287.png", "away_crest": "https://crests.football-data.org/6685.png", "xg_home": 1.49, "xg_away": 1.61, "p_home": 34.1, "p_draw": 26.8, "p_away": 39.2, "over25": 59.7, "btts": 63.3, "top_score": "1-1", "top_score_prob": 12.3}, {"match_id": 555018, "competition": "Brasileirão", "competition_code": "BSA", "date": "2026-09-19", "home": "CR Vasco da Gama", "away": "Coritiba FBC", "home_crest": "https://crests.football-data.org/1780.png", "away_crest": "https://crests.football-data.org/4241.png", "xg_home": 1.38, "xg_away": 1.37, "p_home": 35.7, "p_draw": 28.8, "p_away": 35.5, "over25": 51.9, "btts": 57.5, "top_score": "1-1", "top_score_prob": 13.7}, {"match_id": 558591, "competition": "Serie A", "competition_code": "SA", "date": "2026-09-20", "home": "ACF Fiorentina", "away": "SSC Napoli", "home_crest": "https://crests.football-data.org/99.png", "away_crest": "https://crests.football-data.org/113.png", "xg_home": 0.8, "xg_away": 4.12, "p_home": 3.0, "p_draw": 6.4, "p_away": 90.6, "over25": 86.5, "btts": 54.3, "top_score": "0-4", "top_score_prob": 9.0}, {"match_id": 567315, "competition": "Primeira Liga", "competition_code": "PPL", "date": "2026-09-20", "home": "Vitória SC", "away": "Moreirense FC", "home_crest": "https://crests.football-data.org/5543.png", "away_crest": "https://crests.football-data.org/583.png", "xg_home": 0.76, "xg_away": 0.56, "p_home": 37.2, "p_draw": 38.4, "p_away": 24.4, "over25": 14.8, "btts": 22.3, "top_score": "0-0", "top_score_prob": 26.2}, {"match_id": 575341, "competition": "Ligue des Champions", "competition_code": "CL", "date": "2026-10-13", "home": "Racing Club de Lens", "away": "Sporting Clube de Portugal", "home_crest": "https://crests.football-data.org/546.png", "away_crest": "https://crests.football-data.org/498.png", "xg_home": 2.92, "xg_away": 1.44, "p_home": 66.1, "p_draw": 19.1, "p_away": 14.9, "over25": 80.9, "btts": 73.8, "top_score": "2-1", "top_score_prob": 7.9}, {"match_id": 575342, "competition": "Ligue des Champions", "competition_code": "CL", "date": "2026-10-13", "home": "Sabah FK", "away": "SK Slavia Praha", "home_crest": "https://crests.football-data.org/10233.png", "away_crest": "https://crests.football-data.org/930.png", "xg_home": 0.81, "xg_away": 1.66, "p_home": 14.7, "p_draw": 31.1, "p_away": 54.2, "over25": 44.9, "btts": 48.4, "top_score": "1-1", "top_score_prob": 14.8}, {"match_id": 575343, "competition": "Ligue des Champions", "competition_code": "CL", "date": "2026-10-13", "home": "FC Internazionale Milano", "away": "Club Brugge KV", "home_crest": "https://crests.football-data.org/108.png", "away_crest": "https://crests.football-data.org/851.png", "xg_home": 2.92, "xg_away": 1.18, "p_home": 71.1, "p_draw": 18.1, "p_away": 10.8, "over25": 77.5, "btts": 67.2, "top_score": "2-1", "top_score_prob": 8.4}, {"match_id": 575344, "competition": "Ligue des Champions", "competition_code": "CL", "date": "2026-10-13", "home": "Galatasaray SK", "away": "FC Barcelona", "home_crest": "https://crests.football-data.org/610.png", "away_crest": "https://crests.football-data.org/81.png", "xg_home": 1.69, "xg_away": 2.27, "p_home": 26.7, "p_draw": 24.4, "p_away": 48.8, "over25": 75.7, "btts": 75.4, "top_score": "1-1", "top_score_prob": 9.5}, {"match_id": 575345, "competition": "Ligue des Champions", "competition_code": "CL", "date": "2026-10-13", "home": "Club Atlético de Madrid", "away": "Manchester United FC", "home_crest": "https://crests.football-data.org/78.png", "away_crest": "https://crests.football-data.org/66.png", "xg_home": 0.47, "xg_away": 1.66, "p_home": 7.2, "p_draw": 28.7, "p_away": 64.1, "over25": 35.9, "btts": 33.2, "top_score": "0-1", "top_score_prob": 16.9}, {"match_id": 575346, "competition": "Ligue des Champions", "competition_code": "CL", "date": "2026-10-13", "home": "Arsenal FC", "away": "Lille OSC", "home_crest": "https://crests.football-data.org/57.png", "away_crest": "https://crests.football-data.org/521.png", "xg_home": 2.92, "xg_away": 0.22, "p_home": 90.0, "p_draw": 9.4, "p_away": 0.6, "over25": 60.7, "btts": 19.9, "top_score": "2-0", "top_score_prob": 18.4}], "track_record": {"accuracy_all_time": null, "settled_count": 0, "accuracy_30d": null, "settled_30d_count": 0, "pending_count": 5, "recent": []}, "value_bets": []};
+
+function hashHue(str){
+  let h=0;
+  for(let i=0;i<str.length;i++){h=str.charCodeAt(i)+((h<<5)-h);}
+  return Math.abs(h)%360;
+}
+function initials(name){
+  const stop=["FC","CF","AC","AS","OGC","RC","SCO","ES","OSC","Olympique","de","Real","Stade","Racing","Club","Alsace","1901","29","du"];
+  const parts=name.split(" ").filter(p=>!stop.includes(p));
+  const use=parts.length?parts:name.split(" ");
+  return (use[0]?.[0]||"")+(use[1]?.[0]||use[0]?.[1]||"");
+}
+function crest(name,size,url,extraClass){
+  extraClass=extraClass||"";
+  if(url){
+    return `<div class="crest-wrap ${extraClass}" style="width:${size}px;height:${size}px;">
+      <img src="${url}" alt="${name}" loading="lazy" onerror="this.parentElement.outerHTML=SHIELD('${name.replace(/'/g,"\\'")}',${size})">
+    </div>`;
+  }
+  return SHIELD(name,size);
+}
+function SHIELD(name,size){
+  const hue=hashHue(name);
+  const hue2=(hue+40)%360;
+  return `<div class="crest" style="width:${size}px;height:${size}px;background:linear-gradient(150deg,hsl(${hue}70%42%),hsl(${hue2}70%28%));clip-path:polygon(50% 0%,100% 20%,100% 65%,50% 100%,0% 65%,0% 20%);display:flex;align-items:center;justify-content:center;font-weight:800;color:rgba(255,255,255,0.92);font-size:${size*0.34}px;letter-spacing:-0.02em;">${initials(name)}</div>`;
+}
+function pct(n){return Math.round(n)+"%";}
+function fmtDate(d){
+  const dt=new Date(d+"T00:00:00");
+  return dt.toLocaleDateString("fr-FR",{weekday:"long",day:"numeric",month:"long"});
+}
+
+document.getElementById("date-line").textContent="Pronostics générés le "+fmtDate(DATA.generated_at.slice(0,10));
+
+const allMatches=DATA.matches||[];
+const nbComps=new Set(allMatches.map(m=>m.competition)).size;
+const bestConf=allMatches.length?Math.max(...allMatches.map(m=>Math.max(m.p_home,m.p_draw,m.p_away))):0;
+document.getElementById("masthead-stats").innerHTML=`
+  <div><b>${allMatches.length}</b><span>matchs analysés</span></div>
+  <div><b>${nbComps}</b><span>championnats couverts</span></div>
+  <div><b>${allMatches.length?Math.round(bestConf)+"%":"—"}</b><span>confiance la plus haute du jour</span></div>
+`;
+
+const bgCrests=allMatches.filter(m=>m.home_crest).slice(0,7);
+const bgPos=[{t:"6%",l:"4%",s:70},{t:"58%",l:"1%",s:54},{t:"14%",l:"88%",s:60},{t:"64%",l:"92%",s:76},
+             {t:"78%",l:"38%",s:46},{t:"4%",l:"46%",s:42},{t:"40%",l:"66%",s:50}];
+document.getElementById("masthead-bg").innerHTML=bgCrests.map((m,i)=>{
+  const p=bgPos[i%bgPos.length];
+  return `<img class="fc" src="${m.home_crest}" style="top:${p.t};left:${p.l};width:${p.s}px;height:${p.s}px;">`;
+}).join("");
+
+if(!DATA.matches || DATA.matches.length===0){
+  document.getElementById("hero").innerHTML=`
+    <div class="hero-eyebrow">Aucun match à venir pour le moment</div>
+    <div class="hero-comp">Relance le robot un autre jour, ou vérifie qu'une journée est bien programmée.</div>
+  `;
+  document.getElementById("grid-count").textContent="0 rencontre trouvée";
+  document.getElementById("grid").innerHTML="";
+  document.getElementById("picks-section").innerHTML="";
+  document.getElementById("reliability-section").innerHTML="";
+  document.getElementById("value-section").innerHTML="";
+} else {
+
+const ticker=document.getElementById("ticker");
+ticker.innerHTML=DATA.matches.map(m=>{
+  const lead=m.p_home>=m.p_away?m.home:m.away;
+  const leadPct=Math.max(m.p_home,m.p_away);
+  return `<span>${m.home} – ${m.away} &nbsp; <b>${lead.split(" ")[0]} favori ${pct(leadPct)}</b></span>`;
+}).join("");
+requestAnimationFrame(()=>{
+  const trackWidth=ticker.scrollWidth;
+  const pxPerSecond=55;
+  ticker.style.animationDuration=Math.max(30,trackWidth/pxPerSecond)+"s";
+});
+
+const best=[...DATA.matches].sort((a,b)=>Math.max(b.p_home,b.p_draw,b.p_away)-Math.max(a.p_home,a.p_draw,a.p_away))[0];
+const outcomes=[
+  {label:best.home+" gagne",val:best.p_home,color:"var(--turf-light)"},
+  {label:"match nul",val:best.p_draw,color:"var(--floodlight)"},
+  {label:best.away+" gagne",val:best.p_away,color:"var(--coral)"}
+];
+const top=outcomes.reduce((a,b)=>b.val>a.val?b:a);
+
+document.getElementById("hero").innerHTML=`
+  <div class="hero-eyebrow">Match phare du jour</div>
+  <div class="hero-comp">${best.competition} · ${fmtDate(best.date)}</div>
+  <div class="duel">
+    <div class="duel-team">${crest(best.home,132,best.home_crest,"crest-enter crest-float")}<div class="name">${best.home}</div><div class="xg">xG attendus ${best.xg_home}</div></div>
+    <div class="vs">VS</div>
+    <div class="duel-team">${crest(best.away,132,best.away_crest,"crest-enter crest-float")}<div class="name">${best.away}</div><div class="xg">xG attendus ${best.xg_away}</div></div>
+  </div>
+  <div class="hero-pick">Pronostic du modèle</div>
+  <div class="hero-number" id="hero-num">0%</div>
+  <div class="hero-label">${top.label}</div>
+  <div class="hero-bar">
+    <div style="background:var(--turf-light)" data-w="${best.p_home}"></div>
+    <div style="background:var(--floodlight)" data-w="${best.p_draw}"></div>
+    <div style="background:var(--coral)" data-w="${best.p_away}"></div>
+  </div>
+`;
+
+const picksSection=document.getElementById("picks-section");
+const N_PICKS=Math.min(5,DATA.matches.length);
+const ranked=[...DATA.matches].map(m=>{
+  const opts=[
+    {type:"home",label:m.home+" gagne",val:m.p_home},
+    {type:"draw",label:"Match nul",val:m.p_draw},
+    {type:"away",label:m.away+" gagne",val:m.p_away},
+    {type:"over25",label:"Plus de 2,5 buts",val:m.over25},
+    {type:"under25",label:"Moins de 2,5 buts",val:100-m.over25},
+    {type:"btts_yes",label:"Les 2 équipes marquent",val:m.btts},
+    {type:"btts_no",label:"Au moins une équipe ne marque pas",val:100-m.btts}
+  ];
+  const pick=opts.reduce((a,b)=>b.val>a.val?b:a);
+  return {m,pick};
+}).sort((a,b)=>b.pick.val-a.pick.val).slice(0,N_PICKS);
+
+const combined=ranked.reduce((acc,r)=>acc*(r.pick.val/100),1)*100;
+
+picksSection.innerHTML=`
+  <div class="picks-head">
+    <h2>Sélection du jour — les ${N_PICKS} pronostics les plus confiants</h2>
+    <p>Classés par confiance du modèle, tous marchés confondus (victoire/nul, +/-2,5 buts, les 2 marquent) et tous championnats confondus. Chaque ligne est un pari pris isolément — pas une recommandation de les combiner.</p>
+  </div>
+  ${ranked.map((r,i)=>`
+    <div class="pick-row">
+      <div class="pick-rank">${i+1}</div>
+      <div class="pick-teams">${crest(r.m.home,26,r.m.home_crest)}${crest(r.m.away,26,r.m.away_crest)}</div>
+      <div class="pick-info">
+        <div class="pick-match">${r.m.competition} · ${r.m.home} – ${r.m.away}</div>
+        <div class="pick-outcome">${r.pick.label}</div>
+      </div>
+      <div class="pick-prob">
+        <b>${pct(r.pick.val)}</b>
+        <div class="pick-cote">cote éq. ${(100/r.pick.val).toFixed(2)}</div>
+        <div class="pick-prob-bar"><div data-w="${r.pick.val}"></div></div>
+      </div>
+    </div>
+  `).join("")}
+  <div class="combo-panel">
+    <div class="combo-number">${combined<1?"<1":Math.round(combined*10)/10}%</div>
+    <div class="combo-text">
+      <div class="t1">Probabilité réelle que ces ${N_PICKS} pronostics se réalisent TOUS ensemble</div>
+      <div class="t2">C'est le calcul mathématique exact (probabilités multipliées entre elles), pas une estimation. Chaque pick pris seul est solide — les combiner tous fait chuter la probabilité globale. À toi de décider si le risque vaut le gain visé, en connaissance de cause.</div>
+    </div>
+  </div>
+`;
+
+requestAnimationFrame(()=>{
+  document.querySelectorAll(".pick-prob-bar div").forEach(el=>{
+    el.style.width=el.dataset.w+"%";
+  });
+});
+
+// --- Historique de fiabilité ---
+const tr=DATA.track_record;
+const relSection=document.getElementById("reliability-section");
+if(!tr || tr.settled_count===0){
+  relSection.innerHTML=`
+    <div class="reliability-head">
+      <h2>Historique de fiabilité</h2>
+      <p>Chaque pronostic "Sélection du jour" est enregistré, puis vérifié automatiquement une fois le match joué.</p>
+    </div>
+    <div class="reliability-empty">Pas encore assez de pronostics réglés pour afficher un taux de réussite — reviens dans quelques jours.</div>
+  `;
+} else {
+  relSection.innerHTML=`
+    <div class="reliability-head">
+      <h2>Historique de fiabilité</h2>
+      <p>Chaque pronostic "Sélection du jour" est enregistré le jour même, puis vérifié automatiquement une fois le match joué — pas de tri après coup.</p>
+    </div>
+    <div class="reliability-stats">
+      <div><b>${tr.accuracy_all_time}%</b><span>réussite sur ${tr.settled_count} pronostics réglés</span></div>
+      ${tr.settled_30d_count?`<div><b>${tr.accuracy_30d}%</b><span>sur les 30 derniers jours (${tr.settled_30d_count})</span></div>`:""}
+      ${tr.pending_count?`<div><b>${tr.pending_count}</b><span>en attente du résultat</span></div>`:""}
+    </div>
+    <div class="reliability-strip">
+      ${tr.recent.map(r=>`<div class="chip-result ${r.result}" title="${r.home} ${r.final_score} ${r.away} · ${r.pick_label}">${r.result==="win"?"✓":"✗"}</div>`).join("")}
+    </div>
+  `;
+}
+
+// --- Value betting ---
+const vb=DATA.value_bets||[];
+const valSection=document.getElementById("value-section");
+valSection.innerHTML=`
+  <div class="value-head">
+    <h2>Value bets du jour</h2>
+    <p>Matchs où le modèle voit un vrai écart face aux cotes réelles du marché (marge du bookmaker retirée) — pas juste les picks les plus confiants.</p>
+  </div>
+  ${vb.length===0
+    ? `<div class="value-empty">Aucun écart significatif détecté aujourd'hui — ou cotes non configurées.</div>`
+    : vb.map(v=>`
+      <div class="value-row">
+        <div class="value-teams">${crest(v.home,26,v.home_crest)}${crest(v.away,26,v.away_crest)}</div>
+        <div class="value-info">
+          <div class="value-match">${v.competition} · ${v.home} – ${v.away}</div>
+          <div class="value-outcome">${v.outcome_label}</div>
+        </div>
+        <div class="value-compare">
+          <div><b>${pct(v.model_prob)}</b><span>modèle</span></div>
+          <div><b>${pct(v.market_prob)}</b><span>marché</span></div>
+          <div><b>${v.market_odds.toFixed(2)}</b><span>cote</span></div>
+        </div>
+        <div class="value-edge">+${v.edge.toFixed(1)}</div>
+      </div>
+    `).join("")
+  }
+`;
+
+document.getElementById("grid-count").textContent=DATA.matches.length+" rencontres analysées";
+
+const grid=document.getElementById("grid");
+grid.innerHTML=DATA.matches.map(m=>{
+  const out=[
+    {label:m.home,val:m.p_home,color:"var(--turf-light)"},
+    {label:"Nul",val:m.p_draw,color:"var(--floodlight)"},
+    {label:m.away,val:m.p_away,color:"var(--coral)"}
+  ];
+  const top=out.reduce((a,b)=>b.val>a.val?b:a);
+  return `
+  <div class="ticket">
+    <div class="ticket-main">
+      <div class="ticket-comp"><b>${m.competition}</b> · ${fmtDate(m.date)}</div>
+      <div class="row">${crest(m.home,30,m.home_crest)}<div class="name">${m.home}</div><div class="xg">${m.xg_home}</div></div>
+      <div class="row">${crest(m.away,30,m.away_crest)}<div class="name">${m.away}</div><div class="xg">${m.xg_away}</div></div>
+      <div class="bars">
+        <div style="background:var(--turf-light)" data-w="${m.p_home}"></div>
+        <div style="background:var(--floodlight)" data-w="${m.p_draw}"></div>
+        <div style="background:var(--coral)" data-w="${m.p_away}"></div>
+      </div>
+      <div class="bars-legend"><span>${pct(m.p_home)}</span><span>${pct(m.p_draw)}</span><span>${pct(m.p_away)}</span></div>
+    </div>
+    <div class="stub">
+      <div class="stub-pct">${pct(top.val)}</div>
+      <div class="stub-outcome">${top.label===m.home?"victoire dom.":top.label===m.away?"victoire ext.":"match nul"}</div>
+      <div class="chip">+2.5 buts <b>${pct(m.over25)}</b></div>
+      <div class="chip">les 2 marquent <b>${pct(m.btts)}</b></div>
+      <div class="score-pick">score probable <b>${m.top_score}</b> (${pct(m.top_score_prob)})</div>
+    </div>
+  </div>`;
+}).join("");
+
+requestAnimationFrame(()=>{
+  document.querySelectorAll(".bars div, .hero-bar div").forEach(el=>{
+    el.style.width=el.dataset.w+"%";
+  });
+});
+
+let start=null;
+const target=Math.round(top.val);
+function tick(ts){
+  if(!start)start=ts;
+  const p=Math.min(1,(ts-start)/1100);
+  const eased=1-Math.pow(1-p,3);
+  document.getElementById("hero-num").textContent=Math.round(eased*target)+"%";
+  if(p<1)requestAnimationFrame(tick);
+}
+requestAnimationFrame(tick);
+
+}
+
+if("serviceWorker" in navigator && location.protocol.startsWith("http")){
+  navigator.serviceWorker.register("sw.js").catch(()=>{});
+}
+</script>
+</body>
+</html>

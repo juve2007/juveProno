@@ -1,0 +1,62 @@
+[
+  {
+    "match_id": 560587,
+    "competition": "Premier League",
+    "date": "2026-09-19",
+    "home": "Tottenham Hotspur FC",
+    "away": "Aston Villa FC",
+    "pick_type": "under25",
+    "pick_label": "Moins de 2,5 buts",
+    "probability": 99.8,
+    "result": "pending",
+    "final_score": null
+  },
+  {
+    "match_id": 560591,
+    "competition": "Premier League",
+    "date": "2026-09-18",
+    "home": "Brentford FC",
+    "away": "Chelsea FC",
+    "pick_type": "over25",
+    "pick_label": "Plus de 2,5 buts",
+    "probability": 99.2,
+    "result": "pending",
+    "final_score": null
+  },
+  {
+    "match_id": 558596,
+    "competition": "Serie A",
+    "date": "2026-09-18",
+    "home": "AC Monza",
+    "away": "US Sassuolo Calcio",
+    "pick_type": "over25",
+    "pick_label": "Plus de 2,5 buts",
+    "probability": 99.0,
+    "result": "pending",
+    "final_score": null
+  },
+  {
+    "match_id": 565804,
+    "competition": "Bundesliga",
+    "date": "2026-09-18",
+    "home": "FC Bayern München",
+    "away": "1. FC Union Berlin",
+    "pick_type": "home",
+    "pick_label": "FC Bayern München gagne",
+    "probability": 98.9,
+    "result": "pending",
+    "final_score": null
+  },
+  {
+    "match_id": 558594,
+    "competition": "Serie A",
+    "date": "2026-09-19",
+    "home": "Venezia FC",
+    "away": "SS Lazio",
+    "pick_type": "away",
+    "pick_label": "SS Lazio gagne",
+    "probability": 96.8,
+    "result": "pending",
+    "final_score": null
+  }
+]
