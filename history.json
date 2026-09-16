@@ -58,5 +58,17 @@
     "probability": 96.8,
     "result": "pending",
     "final_score": null
+  },
+  {
+    "match_id": 564687,
+    "competition": "La Liga",
+    "date": "2026-09-16",
+    "home": "FC Barcelona",
+    "away": "Real Racing Club de Santander",
+    "pick_type": "home",
+    "pick_label": "FC Barcelona gagne",
+    "probability": 98.7,
+    "result": "pending",
+    "final_score": null
   }
 ]
