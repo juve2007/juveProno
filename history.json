@@ -70,5 +70,17 @@
     "probability": 98.7,
     "result": "win",
     "final_score": "7-2"
+  },
+  {
+    "match_id": 564697,
+    "competition": "La Liga",
+    "date": "2026-09-20",
+    "home": "Getafe CF",
+    "away": "Málaga CF",
+    "pick_type": "under25",
+    "pick_label": "Moins de 2,5 buts",
+    "probability": 93.7,
+    "result": "pending",
+    "final_score": null
   }
 ]
