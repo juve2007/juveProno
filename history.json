@@ -20,8 +20,8 @@
     "pick_type": "over25",
     "pick_label": "Plus de 2,5 buts",
     "probability": 99.2,
-    "result": "pending",
-    "final_score": null
+    "result": "win",
+    "final_score": "3-0"
   },
   {
     "match_id": 558596,
@@ -32,8 +32,8 @@
     "pick_type": "over25",
     "pick_label": "Plus de 2,5 buts",
     "probability": 99.0,
-    "result": "pending",
-    "final_score": null
+    "result": "win",
+    "final_score": "2-1"
   },
   {
     "match_id": 565804,
@@ -44,8 +44,8 @@
     "pick_type": "home",
     "pick_label": "FC Bayern München gagne",
     "probability": 98.9,
-    "result": "pending",
-    "final_score": null
+    "result": "win",
+    "final_score": "7-0"
   },
   {
     "match_id": 558594,
@@ -80,6 +80,30 @@
     "pick_type": "under25",
     "pick_label": "Moins de 2,5 buts",
     "probability": 93.7,
+    "result": "pending",
+    "final_score": null
+  },
+  {
+    "match_id": 558591,
+    "competition": "Serie A",
+    "date": "2026-09-20",
+    "home": "ACF Fiorentina",
+    "away": "SSC Napoli",
+    "pick_type": "away",
+    "pick_label": "SSC Napoli gagne",
+    "probability": 92.3,
+    "result": "pending",
+    "final_score": null
+  },
+  {
+    "match_id": 565810,
+    "competition": "Bundesliga",
+    "date": "2026-09-19",
+    "home": "SV Werder Bremen",
+    "away": "FC Augsburg",
+    "pick_type": "over25",
+    "pick_label": "Plus de 2,5 buts",
+    "probability": 91.5,
     "result": "pending",
     "final_score": null
   }
