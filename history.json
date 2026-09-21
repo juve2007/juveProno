@@ -80,8 +80,8 @@
     "pick_type": "under25",
     "pick_label": "Moins de 2,5 buts",
     "probability": 93.7,
-    "result": "pending",
-    "final_score": null
+    "result": "win",
+    "final_score": "1-0"
   },
   {
     "match_id": 558591,
@@ -116,8 +116,8 @@
     "pick_type": "home",
     "pick_label": "Leeds United FC gagne",
     "probability": 99.5,
-    "result": "pending",
-    "final_score": null
+    "result": "loss",
+    "final_score": "0-0"
   },
   {
     "match_id": 565813,
@@ -140,8 +140,8 @@
     "pick_type": "btts_no",
     "pick_label": "Au moins une équipe ne marque pas",
     "probability": 95.9,
-    "result": "pending",
-    "final_score": null
+    "result": "loss",
+    "final_score": "2-1"
   },
   {
     "match_id": 567319,
@@ -152,8 +152,8 @@
     "pick_type": "under25",
     "pick_label": "Moins de 2,5 buts",
     "probability": 95.9,
-    "result": "pending",
-    "final_score": null
+    "result": "loss",
+    "final_score": "1-2"
   },
   {
     "match_id": 565803,
@@ -164,6 +164,66 @@
     "pick_type": "under25",
     "pick_label": "Moins de 2,5 buts",
     "probability": 95.0,
+    "result": "loss",
+    "final_score": "3-1"
+  },
+  {
+    "match_id": 565817,
+    "competition": "Bundesliga",
+    "date": "2026-10-10",
+    "home": "1. FC Union Berlin",
+    "away": "SV 07 Elversberg",
+    "pick_type": "over25",
+    "pick_label": "Plus de 2,5 buts",
+    "probability": 99.1,
+    "result": "pending",
+    "final_score": null
+  },
+  {
+    "match_id": 565818,
+    "competition": "Bundesliga",
+    "date": "2026-10-10",
+    "home": "TSG 1899 Hoffenheim",
+    "away": "Hamburger SV",
+    "pick_type": "home",
+    "pick_label": "TSG 1899 Hoffenheim gagne",
+    "probability": 94.8,
+    "result": "pending",
+    "final_score": null
+  },
+  {
+    "match_id": 564700,
+    "competition": "La Liga",
+    "date": "2026-10-10",
+    "home": "FC Barcelona",
+    "away": "Getafe CF",
+    "pick_type": "home",
+    "pick_label": "FC Barcelona gagne",
+    "probability": 94.6,
+    "result": "pending",
+    "final_score": null
+  },
+  {
+    "match_id": 560593,
+    "competition": "Premier League",
+    "date": "2026-10-10",
+    "home": "Arsenal FC",
+    "away": "Leeds United FC",
+    "pick_type": "under25",
+    "pick_label": "Moins de 2,5 buts",
+    "probability": 94.6,
+    "result": "pending",
+    "final_score": null
+  },
+  {
+    "match_id": 559672,
+    "competition": "Ligue 1",
+    "date": "2026-10-10",
+    "home": "Paris Saint-Germain FC",
+    "away": "Le Mans FC",
+    "pick_type": "over25",
+    "pick_label": "Plus de 2,5 buts",
+    "probability": 92.2,
     "result": "pending",
     "final_score": null
   }
