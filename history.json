@@ -212,8 +212,8 @@
     "pick_type": "under25",
     "pick_label": "Moins de 2,5 buts",
     "probability": 94.6,
-    "result": "pending",
-    "final_score": null
+    "result": "win",
+    "final_score": "0-0"
   },
   {
     "match_id": 559672,
@@ -224,6 +224,30 @@
     "pick_type": "over25",
     "pick_label": "Plus de 2,5 buts",
     "probability": 92.2,
+    "result": "pending",
+    "final_score": null
+  },
+  {
+    "match_id": 560594,
+    "competition": "Premier League",
+    "date": "2026-10-11",
+    "home": "Hull City AFC",
+    "away": "Everton FC",
+    "pick_type": "under25",
+    "pick_label": "Moins de 2,5 buts",
+    "probability": 95.7,
+    "result": "pending",
+    "final_score": null
+  },
+  {
+    "match_id": 560592,
+    "competition": "Premier League",
+    "date": "2026-10-10",
+    "home": "Sunderland AFC",
+    "away": "Brighton & Hove Albion FC",
+    "pick_type": "over25",
+    "pick_label": "Plus de 2,5 buts",
+    "probability": 92.7,
     "result": "pending",
     "final_score": null
   }
