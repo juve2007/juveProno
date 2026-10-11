@@ -128,8 +128,8 @@
     "pick_type": "under25",
     "pick_label": "Moins de 2,5 buts",
     "probability": 97.9,
-    "result": "pending",
-    "final_score": null
+    "result": "win",
+    "final_score": "0-2"
   },
   {
     "match_id": 559678,
@@ -176,8 +176,8 @@
     "pick_type": "over25",
     "pick_label": "Plus de 2,5 buts",
     "probability": 99.1,
-    "result": "pending",
-    "final_score": null
+    "result": "loss",
+    "final_score": "1-0"
   },
   {
     "match_id": 565818,
@@ -188,8 +188,8 @@
     "pick_type": "home",
     "pick_label": "TSG 1899 Hoffenheim gagne",
     "probability": 94.8,
-    "result": "pending",
-    "final_score": null
+    "result": "loss",
+    "final_score": "2-3"
   },
   {
     "match_id": 564700,
@@ -200,8 +200,8 @@
     "pick_type": "home",
     "pick_label": "FC Barcelona gagne",
     "probability": 94.6,
-    "result": "pending",
-    "final_score": null
+    "result": "win",
+    "final_score": "3-0"
   },
   {
     "match_id": 560593,
@@ -224,8 +224,8 @@
     "pick_type": "over25",
     "pick_label": "Plus de 2,5 buts",
     "probability": 92.2,
-    "result": "pending",
-    "final_score": null
+    "result": "win",
+    "final_score": "3-1"
   },
   {
     "match_id": 560594,
@@ -248,6 +248,54 @@
     "pick_type": "over25",
     "pick_label": "Plus de 2,5 buts",
     "probability": 92.7,
+    "result": "loss",
+    "final_score": "0-2"
+  },
+  {
+    "match_id": 558584,
+    "competition": "Serie A",
+    "date": "2026-10-11",
+    "home": "Cagliari Calcio",
+    "away": "Juventus FC",
+    "pick_type": "under25",
+    "pick_label": "Moins de 2,5 buts",
+    "probability": 95.6,
+    "result": "pending",
+    "final_score": null
+  },
+  {
+    "match_id": 565823,
+    "competition": "Bundesliga",
+    "date": "2026-10-17",
+    "home": "SV Werder Bremen",
+    "away": "SC Paderborn 07",
+    "pick_type": "home",
+    "pick_label": "SV Werder Bremen gagne",
+    "probability": 95.3,
+    "result": "pending",
+    "final_score": null
+  },
+  {
+    "match_id": 565828,
+    "competition": "Bundesliga",
+    "date": "2026-10-16",
+    "home": "Eintracht Frankfurt",
+    "away": "1. FC Köln",
+    "pick_type": "over25",
+    "pick_label": "Plus de 2,5 buts",
+    "probability": 93.5,
+    "result": "pending",
+    "final_score": null
+  },
+  {
+    "match_id": 558871,
+    "competition": "Eredivisie",
+    "date": "2026-10-17",
+    "home": "ADO Den Haag",
+    "away": "PSV",
+    "pick_type": "away",
+    "pick_label": "PSV gagne",
+    "probability": 93.3,
     "result": "pending",
     "final_score": null
   }
