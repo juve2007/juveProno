@@ -236,8 +236,8 @@
     "pick_type": "under25",
     "pick_label": "Moins de 2,5 buts",
     "probability": 95.7,
-    "result": "pending",
-    "final_score": null
+    "result": "loss",
+    "final_score": "2-2"
   },
   {
     "match_id": 560592,
@@ -260,8 +260,8 @@
     "pick_type": "under25",
     "pick_label": "Moins de 2,5 buts",
     "probability": 95.6,
-    "result": "pending",
-    "final_score": null
+    "result": "win",
+    "final_score": "1-1"
   },
   {
     "match_id": 565823,
@@ -296,6 +296,42 @@
     "pick_type": "away",
     "pick_label": "PSV gagne",
     "probability": 93.3,
+    "result": "pending",
+    "final_score": null
+  },
+  {
+    "match_id": 559661,
+    "competition": "Ligue 1",
+    "date": "2026-10-16",
+    "home": "Le Mans FC",
+    "away": "Toulouse FC",
+    "pick_type": "over25",
+    "pick_label": "Plus de 2,5 buts",
+    "probability": 91.8,
+    "result": "pending",
+    "final_score": null
+  },
+  {
+    "match_id": 560610,
+    "competition": "Premier League",
+    "date": "2026-10-17",
+    "home": "Manchester City FC",
+    "away": "Ipswich Town FC",
+    "pick_type": "home",
+    "pick_label": "Manchester City FC gagne",
+    "probability": 91.3,
+    "result": "pending",
+    "final_score": null
+  },
+  {
+    "match_id": 575346,
+    "competition": "Ligue des Champions",
+    "date": "2026-10-13",
+    "home": "Arsenal FC",
+    "away": "Lille OSC",
+    "pick_type": "home",
+    "pick_label": "Arsenal FC gagne",
+    "probability": 90.0,
     "result": "pending",
     "final_score": null
   }
