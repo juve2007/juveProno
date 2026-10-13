@@ -334,5 +334,17 @@
     "probability": 90.0,
     "result": "pending",
     "final_score": null
+  },
+  {
+    "match_id": 560607,
+    "competition": "Premier League",
+    "date": "2026-10-17",
+    "home": "Newcastle United FC",
+    "away": "Aston Villa FC",
+    "pick_type": "over25",
+    "pick_label": "Plus de 2,5 buts",
+    "probability": 91.2,
+    "result": "pending",
+    "final_score": null
   }
 ]
