@@ -332,8 +332,8 @@
     "pick_type": "home",
     "pick_label": "Arsenal FC gagne",
     "probability": 90.0,
-    "result": "pending",
-    "final_score": null
+    "result": "win",
+    "final_score": "3-0"
   },
   {
     "match_id": 560607,
@@ -344,6 +344,42 @@
     "pick_type": "over25",
     "pick_label": "Plus de 2,5 buts",
     "probability": 91.2,
+    "result": "pending",
+    "final_score": null
+  },
+  {
+    "match_id": 575351,
+    "competition": "Ligue des Champions",
+    "date": "2026-10-14",
+    "home": "Feyenoord Rotterdam",
+    "away": "Como 1907",
+    "pick_type": "over25",
+    "pick_label": "Plus de 2,5 buts",
+    "probability": 100.0,
+    "result": "pending",
+    "final_score": null
+  },
+  {
+    "match_id": 575350,
+    "competition": "Ligue des Champions",
+    "date": "2026-10-14",
+    "home": "LASK Linz",
+    "away": "Liverpool FC",
+    "pick_type": "away",
+    "pick_label": "Liverpool FC gagne",
+    "probability": 95.0,
+    "result": "pending",
+    "final_score": null
+  },
+  {
+    "match_id": 575355,
+    "competition": "Ligue des Champions",
+    "date": "2026-10-14",
+    "home": "Aston Villa FC",
+    "away": "Fenerbahçe SK",
+    "pick_type": "home",
+    "pick_label": "Aston Villa FC gagne",
+    "probability": 94.9,
     "result": "pending",
     "final_score": null
   }
