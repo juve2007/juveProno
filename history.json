@@ -356,8 +356,8 @@
     "pick_type": "over25",
     "pick_label": "Plus de 2,5 buts",
     "probability": 100.0,
-    "result": "pending",
-    "final_score": null
+    "result": "win",
+    "final_score": "3-2"
   },
   {
     "match_id": 575350,
@@ -368,8 +368,8 @@
     "pick_type": "away",
     "pick_label": "Liverpool FC gagne",
     "probability": 95.0,
-    "result": "pending",
-    "final_score": null
+    "result": "win",
+    "final_score": "3-6"
   },
   {
     "match_id": 575355,
@@ -380,6 +380,30 @@
     "pick_type": "home",
     "pick_label": "Aston Villa FC gagne",
     "probability": 94.9,
+    "result": "win",
+    "final_score": "6-0"
+  },
+  {
+    "match_id": 575363,
+    "competition": "Ligue des Champions",
+    "date": "2026-10-20",
+    "home": "Liverpool FC",
+    "away": "Villarreal CF",
+    "pick_type": "over25",
+    "pick_label": "Plus de 2,5 buts",
+    "probability": 100.0,
+    "result": "pending",
+    "final_score": null
+  },
+  {
+    "match_id": 575359,
+    "competition": "Ligue des Champions",
+    "date": "2026-10-20",
+    "home": "Sabah FK",
+    "away": "Borussia Dortmund",
+    "pick_type": "under25",
+    "pick_label": "Moins de 2,5 buts",
+    "probability": 96.2,
     "result": "pending",
     "final_score": null
   }
