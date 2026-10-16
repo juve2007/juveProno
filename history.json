@@ -406,5 +406,17 @@
     "probability": 96.2,
     "result": "pending",
     "final_score": null
+  },
+  {
+    "match_id": 575362,
+    "competition": "Ligue des Champions",
+    "date": "2026-10-20",
+    "home": "VfB Stuttgart",
+    "away": "Club Atlético de Madrid",
+    "pick_type": "btts_no",
+    "pick_label": "Au moins une équipe ne marque pas",
+    "probability": 93.2,
+    "result": "pending",
+    "final_score": null
   }
 ]
