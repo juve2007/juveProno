@@ -284,8 +284,8 @@
     "pick_type": "over25",
     "pick_label": "Plus de 2,5 buts",
     "probability": 93.5,
-    "result": "pending",
-    "final_score": null
+    "result": "loss",
+    "final_score": "1-0"
   },
   {
     "match_id": 558871,
@@ -308,8 +308,8 @@
     "pick_type": "over25",
     "pick_label": "Plus de 2,5 buts",
     "probability": 91.8,
-    "result": "pending",
-    "final_score": null
+    "result": "win",
+    "final_score": "0-3"
   },
   {
     "match_id": 560610,
