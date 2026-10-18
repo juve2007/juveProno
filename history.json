@@ -272,8 +272,8 @@
     "pick_type": "home",
     "pick_label": "SV Werder Bremen gagne",
     "probability": 95.3,
-    "result": "pending",
-    "final_score": null
+    "result": "loss",
+    "final_score": "2-2"
   },
   {
     "match_id": 565828,
@@ -320,8 +320,8 @@
     "pick_type": "home",
     "pick_label": "Manchester City FC gagne",
     "probability": 91.3,
-    "result": "pending",
-    "final_score": null
+    "result": "win",
+    "final_score": "3-2"
   },
   {
     "match_id": 575346,
@@ -344,8 +344,8 @@
     "pick_type": "over25",
     "pick_label": "Plus de 2,5 buts",
     "probability": 91.2,
-    "result": "pending",
-    "final_score": null
+    "result": "loss",
+    "final_score": "0-1"
   },
   {
     "match_id": 575351,
@@ -416,6 +416,30 @@
     "pick_type": "btts_no",
     "pick_label": "Au moins une équipe ne marque pas",
     "probability": 93.2,
+    "result": "pending",
+    "final_score": null
+  },
+  {
+    "match_id": 560609,
+    "competition": "Premier League",
+    "date": "2026-10-18",
+    "home": "Brighton & Hove Albion FC",
+    "away": "Crystal Palace FC",
+    "pick_type": "home",
+    "pick_label": "Brighton & Hove Albion FC gagne",
+    "probability": 98.0,
+    "result": "pending",
+    "final_score": null
+  },
+  {
+    "match_id": 565826,
+    "competition": "Bundesliga",
+    "date": "2026-10-18",
+    "home": "Borussia Mönchengladbach",
+    "away": "TSG 1899 Hoffenheim",
+    "pick_type": "over25",
+    "pick_label": "Plus de 2,5 buts",
+    "probability": 98.0,
     "result": "pending",
     "final_score": null
   }
