@@ -466,5 +466,53 @@
     "probability": 94.3,
     "result": "pending",
     "final_score": null
+  },
+  {
+    "match_id": 558563,
+    "competition": "Serie A",
+    "date": "2026-10-25",
+    "home": "FC Internazionale Milano",
+    "away": "ACF Fiorentina",
+    "pick_type": "over25",
+    "pick_label": "Plus de 2,5 buts",
+    "probability": 97.9,
+    "result": "pending",
+    "final_score": null
+  },
+  {
+    "match_id": 575361,
+    "competition": "Ligue des Champions",
+    "date": "2026-10-20",
+    "home": "Manchester City FC",
+    "away": "PAE AEK",
+    "pick_type": "under25",
+    "pick_label": "Moins de 2,5 buts",
+    "probability": 95.6,
+    "result": "pending",
+    "final_score": null
+  },
+  {
+    "match_id": 564720,
+    "competition": "La Liga",
+    "date": "2026-10-25",
+    "home": "Athletic Club",
+    "away": "Getafe CF",
+    "pick_type": "under25",
+    "pick_label": "Moins de 2,5 buts",
+    "probability": 93.4,
+    "result": "pending",
+    "final_score": null
+  },
+  {
+    "match_id": 565830,
+    "competition": "Bundesliga",
+    "date": "2026-10-24",
+    "home": "1. FSV Mainz 05",
+    "away": "SV Werder Bremen",
+    "pick_type": "over25",
+    "pick_label": "Plus de 2,5 buts",
+    "probability": 92.7,
+    "result": "pending",
+    "final_score": null
   }
 ]
