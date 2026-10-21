@@ -392,8 +392,8 @@
     "pick_type": "over25",
     "pick_label": "Plus de 2,5 buts",
     "probability": 100.0,
-    "result": "pending",
-    "final_score": null
+    "result": "win",
+    "final_score": "4-3"
   },
   {
     "match_id": 575359,
@@ -404,8 +404,8 @@
     "pick_type": "under25",
     "pick_label": "Moins de 2,5 buts",
     "probability": 96.2,
-    "result": "pending",
-    "final_score": null
+    "result": "loss",
+    "final_score": "1-2"
   },
   {
     "match_id": 575362,
@@ -416,8 +416,8 @@
     "pick_type": "btts_no",
     "pick_label": "Au moins une équipe ne marque pas",
     "probability": 93.2,
-    "result": "pending",
-    "final_score": null
+    "result": "loss",
+    "final_score": "1-1"
   },
   {
     "match_id": 560609,
@@ -488,8 +488,8 @@
     "pick_type": "under25",
     "pick_label": "Moins de 2,5 buts",
     "probability": 95.6,
-    "result": "pending",
-    "final_score": null
+    "result": "loss",
+    "final_score": "5-1"
   },
   {
     "match_id": 564720,
@@ -512,6 +512,42 @@
     "pick_type": "over25",
     "pick_label": "Plus de 2,5 buts",
     "probability": 92.7,
+    "result": "pending",
+    "final_score": null
+  },
+  {
+    "match_id": 575373,
+    "competition": "Ligue des Champions",
+    "date": "2026-10-21",
+    "home": "Club Brugge KV",
+    "away": "Racing Club de Lens",
+    "pick_type": "home",
+    "pick_label": "Club Brugge KV gagne",
+    "probability": 100.0,
+    "result": "pending",
+    "final_score": null
+  },
+  {
+    "match_id": 575368,
+    "competition": "Ligue des Champions",
+    "date": "2026-10-21",
+    "home": "Como 1907",
+    "away": "Manchester United FC",
+    "pick_type": "over25",
+    "pick_label": "Plus de 2,5 buts",
+    "probability": 99.3,
+    "result": "pending",
+    "final_score": null
+  },
+  {
+    "match_id": 575372,
+    "competition": "Ligue des Champions",
+    "date": "2026-10-21",
+    "home": "FC Bayern München",
+    "away": "Arsenal FC",
+    "pick_type": "under25",
+    "pick_label": "Moins de 2,5 buts",
+    "probability": 96.4,
     "result": "pending",
     "final_score": null
   }
