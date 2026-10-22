@@ -524,8 +524,8 @@
     "pick_type": "home",
     "pick_label": "Club Brugge KV gagne",
     "probability": 100.0,
-    "result": "pending",
-    "final_score": null
+    "result": "win",
+    "final_score": "3-0"
   },
   {
     "match_id": 575368,
@@ -536,8 +536,8 @@
     "pick_type": "over25",
     "pick_label": "Plus de 2,5 buts",
     "probability": 99.3,
-    "result": "pending",
-    "final_score": null
+    "result": "win",
+    "final_score": "4-1"
   },
   {
     "match_id": 575372,
@@ -548,7 +548,7 @@
     "pick_type": "under25",
     "pick_label": "Moins de 2,5 buts",
     "probability": 96.4,
-    "result": "pending",
-    "final_score": null
+    "result": "loss",
+    "final_score": "2-2"
   }
 ]
