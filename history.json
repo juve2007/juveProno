@@ -550,5 +550,17 @@
     "probability": 96.4,
     "result": "loss",
     "final_score": "2-2"
+  },
+  {
+    "match_id": 559655,
+    "competition": "Ligue 1",
+    "date": "2026-10-25",
+    "home": "Toulouse FC",
+    "away": "ES Troyes AC",
+    "pick_type": "home",
+    "pick_label": "Toulouse FC gagne",
+    "probability": 91.4,
+    "result": "pending",
+    "final_score": null
   }
 ]
