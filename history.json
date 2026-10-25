@@ -562,5 +562,53 @@
     "probability": 91.4,
     "result": "pending",
     "final_score": null
+  },
+  {
+    "match_id": 560626,
+    "competition": "Premier League",
+    "date": "2026-10-31",
+    "home": "Chelsea FC",
+    "away": "Manchester United FC",
+    "pick_type": "over25",
+    "pick_label": "Plus de 2,5 buts",
+    "probability": 93.2,
+    "result": "pending",
+    "final_score": null
+  },
+  {
+    "match_id": 565835,
+    "competition": "Bundesliga",
+    "date": "2026-10-25",
+    "home": "TSG 1899 Hoffenheim",
+    "away": "Bayer 04 Leverkusen",
+    "pick_type": "over25",
+    "pick_label": "Plus de 2,5 buts",
+    "probability": 92.5,
+    "result": "pending",
+    "final_score": null
+  },
+  {
+    "match_id": 564726,
+    "competition": "La Liga",
+    "date": "2026-10-25",
+    "home": "Real Sociedad de Fútbol",
+    "away": "Levante UD",
+    "pick_type": "over25",
+    "pick_label": "Plus de 2,5 buts",
+    "probability": 91.7,
+    "result": "pending",
+    "final_score": null
+  },
+  {
+    "match_id": 565846,
+    "competition": "Bundesliga",
+    "date": "2026-10-30",
+    "home": "SV 07 Elversberg",
+    "away": "1. FSV Mainz 05",
+    "pick_type": "over25",
+    "pick_label": "Plus de 2,5 buts",
+    "probability": 91.5,
+    "result": "pending",
+    "final_score": null
   }
 ]
