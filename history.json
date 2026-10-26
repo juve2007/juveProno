@@ -452,8 +452,8 @@
     "pick_type": "home",
     "pick_label": "FC Augsburg gagne",
     "probability": 97.9,
-    "result": "pending",
-    "final_score": null
+    "result": "loss",
+    "final_score": "1-1"
   },
   {
     "match_id": 560617,
@@ -464,8 +464,8 @@
     "pick_type": "home",
     "pick_label": "Chelsea FC gagne",
     "probability": 94.3,
-    "result": "pending",
-    "final_score": null
+    "result": "loss",
+    "final_score": "0-2"
   },
   {
     "match_id": 558563,
@@ -476,8 +476,8 @@
     "pick_type": "over25",
     "pick_label": "Plus de 2,5 buts",
     "probability": 97.9,
-    "result": "pending",
-    "final_score": null
+    "result": "win",
+    "final_score": "2-1"
   },
   {
     "match_id": 575361,
@@ -500,8 +500,8 @@
     "pick_type": "under25",
     "pick_label": "Moins de 2,5 buts",
     "probability": 93.4,
-    "result": "pending",
-    "final_score": null
+    "result": "loss",
+    "final_score": "4-0"
   },
   {
     "match_id": 565830,
@@ -512,8 +512,8 @@
     "pick_type": "over25",
     "pick_label": "Plus de 2,5 buts",
     "probability": 92.7,
-    "result": "pending",
-    "final_score": null
+    "result": "win",
+    "final_score": "2-3"
   },
   {
     "match_id": 575373,
@@ -560,8 +560,8 @@
     "pick_type": "home",
     "pick_label": "Toulouse FC gagne",
     "probability": 91.4,
-    "result": "pending",
-    "final_score": null
+    "result": "loss",
+    "final_score": "0-0"
   },
   {
     "match_id": 560626,
@@ -584,8 +584,8 @@
     "pick_type": "over25",
     "pick_label": "Plus de 2,5 buts",
     "probability": 92.5,
-    "result": "pending",
-    "final_score": null
+    "result": "win",
+    "final_score": "3-0"
   },
   {
     "match_id": 564726,
@@ -596,8 +596,8 @@
     "pick_type": "over25",
     "pick_label": "Plus de 2,5 buts",
     "probability": 91.7,
-    "result": "pending",
-    "final_score": null
+    "result": "win",
+    "final_score": "2-1"
   },
   {
     "match_id": 565846,
@@ -608,6 +608,54 @@
     "pick_type": "over25",
     "pick_label": "Plus de 2,5 buts",
     "probability": 91.5,
+    "result": "pending",
+    "final_score": null
+  },
+  {
+    "match_id": 565843,
+    "competition": "Bundesliga",
+    "date": "2026-10-31",
+    "home": "SV Werder Bremen",
+    "away": "TSG 1899 Hoffenheim",
+    "pick_type": "over25",
+    "pick_label": "Plus de 2,5 buts",
+    "probability": 96.3,
+    "result": "pending",
+    "final_score": null
+  },
+  {
+    "match_id": 558853,
+    "competition": "Eredivisie",
+    "date": "2026-10-31",
+    "home": "PSV",
+    "away": "Willem II Tilburg",
+    "pick_type": "home",
+    "pick_label": "PSV gagne",
+    "probability": 95.0,
+    "result": "pending",
+    "final_score": null
+  },
+  {
+    "match_id": 564732,
+    "competition": "La Liga",
+    "date": "2026-10-31",
+    "home": "FC Barcelona",
+    "away": "Deportivo Alavés",
+    "pick_type": "home",
+    "pick_label": "FC Barcelona gagne",
+    "probability": 91.3,
+    "result": "pending",
+    "final_score": null
+  },
+  {
+    "match_id": 558850,
+    "competition": "Eredivisie",
+    "date": "2026-10-31",
+    "home": "SC Cambuur-Leeuwarden",
+    "away": "Go Ahead Eagles",
+    "pick_type": "over25",
+    "pick_label": "Plus de 2,5 buts",
+    "probability": 91.0,
     "result": "pending",
     "final_score": null
   }
