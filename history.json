@@ -608,8 +608,8 @@
     "pick_type": "over25",
     "pick_label": "Plus de 2,5 buts",
     "probability": 91.5,
-    "result": "pending",
-    "final_score": null
+    "result": "win",
+    "final_score": "4-1"
   },
   {
     "match_id": 565843,
