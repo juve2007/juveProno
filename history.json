@@ -572,8 +572,8 @@
     "pick_type": "over25",
     "pick_label": "Plus de 2,5 buts",
     "probability": 93.2,
-    "result": "pending",
-    "final_score": null
+    "result": "loss",
+    "final_score": "2-0"
   },
   {
     "match_id": 565835,
@@ -620,8 +620,8 @@
     "pick_type": "over25",
     "pick_label": "Plus de 2,5 buts",
     "probability": 96.3,
-    "result": "pending",
-    "final_score": null
+    "result": "loss",
+    "final_score": "2-0"
   },
   {
     "match_id": 558853,
@@ -632,8 +632,8 @@
     "pick_type": "home",
     "pick_label": "PSV gagne",
     "probability": 95.0,
-    "result": "pending",
-    "final_score": null
+    "result": "win",
+    "final_score": "7-0"
   },
   {
     "match_id": 564732,
@@ -644,8 +644,8 @@
     "pick_type": "home",
     "pick_label": "FC Barcelona gagne",
     "probability": 91.3,
-    "result": "pending",
-    "final_score": null
+    "result": "win",
+    "final_score": "6-1"
   },
   {
     "match_id": 558850,
@@ -656,6 +656,66 @@
     "pick_type": "over25",
     "pick_label": "Plus de 2,5 buts",
     "probability": 91.0,
+    "result": "win",
+    "final_score": "4-0"
+  },
+  {
+    "match_id": 565851,
+    "competition": "Bundesliga",
+    "date": "2026-11-07",
+    "home": "1. FSV Mainz 05",
+    "away": "FC Bayern München",
+    "pick_type": "over25",
+    "pick_label": "Plus de 2,5 buts",
+    "probability": 95.4,
+    "result": "pending",
+    "final_score": null
+  },
+  {
+    "match_id": 558846,
+    "competition": "Eredivisie",
+    "date": "2026-11-01",
+    "home": "FC Groningen",
+    "away": "Sparta Rotterdam",
+    "pick_type": "over25",
+    "pick_label": "Plus de 2,5 buts",
+    "probability": 88.2,
+    "result": "pending",
+    "final_score": null
+  },
+  {
+    "match_id": 564734,
+    "competition": "La Liga",
+    "date": "2026-11-01",
+    "home": "Real Racing Club de Santander",
+    "away": "Real Madrid CF",
+    "pick_type": "away",
+    "pick_label": "Real Madrid CF gagne",
+    "probability": 88.0,
+    "result": "pending",
+    "final_score": null
+  },
+  {
+    "match_id": 567346,
+    "competition": "Primeira Liga",
+    "date": "2026-11-02",
+    "home": "Gil Vicente FC",
+    "away": "Vitória SC",
+    "pick_type": "under25",
+    "pick_label": "Moins de 2,5 buts",
+    "probability": 87.2,
+    "result": "pending",
+    "final_score": null
+  },
+  {
+    "match_id": 560632,
+    "competition": "Premier League",
+    "date": "2026-11-07",
+    "home": "Leeds United FC",
+    "away": "Tottenham Hotspur FC",
+    "pick_type": "under25",
+    "pick_label": "Moins de 2,5 buts",
+    "probability": 84.2,
     "result": "pending",
     "final_score": null
   }
