@@ -680,8 +680,8 @@
     "pick_type": "over25",
     "pick_label": "Plus de 2,5 buts",
     "probability": 88.2,
-    "result": "pending",
-    "final_score": null
+    "result": "win",
+    "final_score": "2-3"
   },
   {
     "match_id": 564734,
@@ -692,8 +692,8 @@
     "pick_type": "away",
     "pick_label": "Real Madrid CF gagne",
     "probability": 88.0,
-    "result": "pending",
-    "final_score": null
+    "result": "win",
+    "final_score": "0-3"
   },
   {
     "match_id": 567346,
@@ -716,6 +716,30 @@
     "pick_type": "under25",
     "pick_label": "Moins de 2,5 buts",
     "probability": 84.2,
+    "result": "pending",
+    "final_score": null
+  },
+  {
+    "match_id": 559635,
+    "competition": "Ligue 1",
+    "date": "2026-11-07",
+    "home": "Paris Saint-Germain FC",
+    "away": "ES Troyes AC",
+    "pick_type": "home",
+    "pick_label": "Paris Saint-Germain FC gagne",
+    "probability": 92.5,
+    "result": "pending",
+    "final_score": null
+  },
+  {
+    "match_id": 558843,
+    "competition": "Eredivisie",
+    "date": "2026-11-07",
+    "home": "SBV Excelsior",
+    "away": "Go Ahead Eagles",
+    "pick_type": "over25",
+    "pick_label": "Plus de 2,5 buts",
+    "probability": 83.3,
     "result": "pending",
     "final_score": null
   }
