@@ -704,8 +704,8 @@
     "pick_type": "under25",
     "pick_label": "Moins de 2,5 buts",
     "probability": 87.2,
-    "result": "pending",
-    "final_score": null
+    "result": "win",
+    "final_score": "0-0"
   },
   {
     "match_id": 560632,
@@ -740,6 +740,30 @@
     "pick_type": "over25",
     "pick_label": "Plus de 2,5 buts",
     "probability": 83.3,
+    "result": "pending",
+    "final_score": null
+  },
+  {
+    "match_id": 567351,
+    "competition": "Primeira Liga",
+    "date": "2026-11-08",
+    "home": "CD Santa Clara",
+    "away": "Gil Vicente FC",
+    "pick_type": "under25",
+    "pick_label": "Moins de 2,5 buts",
+    "probability": 92.1,
+    "result": "pending",
+    "final_score": null
+  },
+  {
+    "match_id": 558531,
+    "competition": "Serie A",
+    "date": "2026-11-07",
+    "home": "AS Roma",
+    "away": "US Sassuolo Calcio",
+    "pick_type": "over25",
+    "pick_label": "Plus de 2,5 buts",
+    "probability": 90.6,
     "result": "pending",
     "final_score": null
   }
