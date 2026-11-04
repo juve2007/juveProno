@@ -766,5 +766,41 @@
     "probability": 90.6,
     "result": "pending",
     "final_score": null
+  },
+  {
+    "match_id": 575389,
+    "competition": "Ligue des Champions",
+    "date": "2026-11-04",
+    "home": "SK Slavia Praha",
+    "away": "Arsenal FC",
+    "pick_type": "away",
+    "pick_label": "Arsenal FC gagne",
+    "probability": 99.6,
+    "result": "pending",
+    "final_score": null
+  },
+  {
+    "match_id": 575387,
+    "competition": "Ligue des Champions",
+    "date": "2026-11-04",
+    "home": "Fenerbahçe SK",
+    "away": "Liverpool FC",
+    "pick_type": "away",
+    "pick_label": "Liverpool FC gagne",
+    "probability": 98.7,
+    "result": "pending",
+    "final_score": null
+  },
+  {
+    "match_id": 575391,
+    "competition": "Ligue des Champions",
+    "date": "2026-11-04",
+    "home": "Borussia Dortmund",
+    "away": "Real Betis Balompié",
+    "pick_type": "over25",
+    "pick_label": "Plus de 2,5 buts",
+    "probability": 95.4,
+    "result": "pending",
+    "final_score": null
   }
 ]
