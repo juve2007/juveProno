@@ -716,8 +716,8 @@
     "pick_type": "under25",
     "pick_label": "Moins de 2,5 buts",
     "probability": 84.2,
-    "result": "pending",
-    "final_score": null
+    "result": "win",
+    "final_score": "0-0"
   },
   {
     "match_id": 559635,
