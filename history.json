@@ -752,8 +752,8 @@
     "pick_type": "under25",
     "pick_label": "Moins de 2,5 buts",
     "probability": 92.1,
-    "result": "pending",
-    "final_score": null
+    "result": "loss",
+    "final_score": "1-2"
   },
   {
     "match_id": 558531,
@@ -836,8 +836,8 @@
     "pick_type": "away",
     "pick_label": "Sport Lisboa e Benfica gagne",
     "probability": 93.8,
-    "result": "pending",
-    "final_score": null
+    "result": "win",
+    "final_score": "2-3"
   },
   {
     "match_id": 565854,
@@ -848,6 +848,42 @@
     "pick_type": "home",
     "pick_label": "SC Freiburg gagne",
     "probability": 90.4,
+    "result": "win",
+    "final_score": "2-0"
+  },
+  {
+    "match_id": 558828,
+    "competition": "Eredivisie",
+    "date": "2026-11-22",
+    "home": "FC Twente '65",
+    "away": "Willem II Tilburg",
+    "pick_type": "home",
+    "pick_label": "FC Twente '65 gagne",
+    "probability": 95.7,
+    "result": "pending",
+    "final_score": null
+  },
+  {
+    "match_id": 564749,
+    "competition": "La Liga",
+    "date": "2026-11-22",
+    "home": "FC Barcelona",
+    "away": "Villarreal CF",
+    "pick_type": "home",
+    "pick_label": "FC Barcelona gagne",
+    "probability": 90.5,
+    "result": "pending",
+    "final_score": null
+  },
+  {
+    "match_id": 558835,
+    "competition": "Eredivisie",
+    "date": "2026-11-21",
+    "home": "FC Utrecht",
+    "away": "SC Cambuur-Leeuwarden",
+    "pick_type": "over25",
+    "pick_label": "Plus de 2,5 buts",
+    "probability": 90.3,
     "result": "pending",
     "final_score": null
   }
