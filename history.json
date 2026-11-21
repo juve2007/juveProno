@@ -824,8 +824,8 @@
     "pick_type": "home",
     "pick_label": "FC Bayern München gagne",
     "probability": 96.7,
-    "result": "pending",
-    "final_score": null
+    "result": "loss",
+    "final_score": "1-1"
   },
   {
     "match_id": 567355,
@@ -884,6 +884,18 @@
     "pick_type": "over25",
     "pick_label": "Plus de 2,5 buts",
     "probability": 90.3,
+    "result": "pending",
+    "final_score": null
+  },
+  {
+    "match_id": 561948,
+    "competition": "Championship",
+    "date": "2026-11-21",
+    "home": "Norwich City FC",
+    "away": "Cardiff City FC",
+    "pick_type": "over25",
+    "pick_label": "Plus de 2,5 buts",
+    "probability": 88.5,
     "result": "pending",
     "final_score": null
   }
