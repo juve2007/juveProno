@@ -860,8 +860,8 @@
     "pick_type": "home",
     "pick_label": "FC Twente '65 gagne",
     "probability": 95.7,
-    "result": "pending",
-    "final_score": null
+    "result": "win",
+    "final_score": "2-1"
   },
   {
     "match_id": 564749,
@@ -872,8 +872,8 @@
     "pick_type": "home",
     "pick_label": "FC Barcelona gagne",
     "probability": 90.5,
-    "result": "pending",
-    "final_score": null
+    "result": "loss",
+    "final_score": "0-2"
   },
   {
     "match_id": 558835,
@@ -884,8 +884,8 @@
     "pick_type": "over25",
     "pick_label": "Plus de 2,5 buts",
     "probability": 90.3,
-    "result": "pending",
-    "final_score": null
+    "result": "win",
+    "final_score": "2-3"
   },
   {
     "match_id": 561948,
@@ -896,6 +896,54 @@
     "pick_type": "over25",
     "pick_label": "Plus de 2,5 buts",
     "probability": 88.5,
+    "result": "win",
+    "final_score": "2-1"
+  },
+  {
+    "match_id": 565868,
+    "competition": "Bundesliga",
+    "date": "2026-11-28",
+    "home": "SC Paderborn 07",
+    "away": "FC Schalke 04",
+    "pick_type": "under25",
+    "pick_label": "Moins de 2,5 buts",
+    "probability": 95.3,
+    "result": "pending",
+    "final_score": null
+  },
+  {
+    "match_id": 565864,
+    "competition": "Bundesliga",
+    "date": "2026-11-22",
+    "home": "FC Augsburg",
+    "away": "1. FSV Mainz 05",
+    "pick_type": "over25",
+    "pick_label": "Plus de 2,5 buts",
+    "probability": 93.0,
+    "result": "pending",
+    "final_score": null
+  },
+  {
+    "match_id": 558820,
+    "competition": "Eredivisie",
+    "date": "2026-11-27",
+    "home": "FC Groningen",
+    "away": "Willem II Tilburg",
+    "pick_type": "over25",
+    "pick_label": "Plus de 2,5 buts",
+    "probability": 89.6,
+    "result": "pending",
+    "final_score": null
+  },
+  {
+    "match_id": 558826,
+    "competition": "Eredivisie",
+    "date": "2026-11-28",
+    "home": "PSV",
+    "away": "Go Ahead Eagles",
+    "pick_type": "over25",
+    "pick_label": "Plus de 2,5 buts",
+    "probability": 89.3,
     "result": "pending",
     "final_score": null
   }
