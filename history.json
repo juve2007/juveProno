@@ -980,8 +980,8 @@
     "pick_type": "over25",
     "pick_label": "Plus de 2,5 buts",
     "probability": 99.1,
-    "result": "pending",
-    "final_score": null
+    "result": "win",
+    "final_score": "0-3"
   },
   {
     "match_id": 575404,
@@ -992,8 +992,8 @@
     "pick_type": "away",
     "pick_label": "FC Barcelona gagne",
     "probability": 98.7,
-    "result": "pending",
-    "final_score": null
+    "result": "win",
+    "final_score": "1-4"
   },
   {
     "match_id": 575408,
@@ -1004,6 +1004,30 @@
     "pick_type": "home",
     "pick_label": "Paris Saint-Germain FC gagne",
     "probability": 98.5,
+    "result": "loss",
+    "final_score": "2-2"
+  },
+  {
+    "match_id": 575417,
+    "competition": "Ligue des Champions",
+    "date": "2026-12-08",
+    "home": "FC Bayern München",
+    "away": "SK Slavia Praha",
+    "pick_type": "home",
+    "pick_label": "FC Bayern München gagne",
+    "probability": 97.5,
+    "result": "pending",
+    "final_score": null
+  },
+  {
+    "match_id": 575415,
+    "competition": "Ligue des Champions",
+    "date": "2026-12-08",
+    "home": "FC Barcelona",
+    "away": "Manchester City FC",
+    "pick_type": "over25",
+    "pick_label": "Plus de 2,5 buts",
+    "probability": 95.4,
     "result": "pending",
     "final_score": null
   }
